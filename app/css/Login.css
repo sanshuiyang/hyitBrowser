@@ -1,0 +1,64 @@
+.l-page{
+    width: 980px;
+    margin: 5% auto;
+    
+}
+
+.l-header{
+    padding-bottom: 10px;
+}
+
+.l-card{
+    /* background-image: url("../img/bg.png"); */
+    background-size:980px 551px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.l_right {
+    width: 400px;
+    padding-top: 200px;
+    margin: auto;
+    color: rgba(54, 47, 47, 0.582)
+}
+
+.l-btnLogin{
+    margin-left: 30%;
+    background-color: #FF7F50;
+    margin-bottom: 10px;
+}
+
+p{
+    margin: 0%;
+    font-size: 30px;
+    color: deepskyblue;
+    font-family: "楷体";
+}
+
+.l-btnRegister{
+    margin-left: 20%;
+    background-color: #FF7F50;
+}
+
+h4{
+    margin:0;
+    padding: 0;
+    text-align: end;
+    font-family: "楷体";
+    font-size: 20px;
+}
+
+hr{
+    margin:5px 0 0 0;
+    padding: 0;
+    color: #D5D5D5;
+    border: 1px solid currentColor;
+}
+
+.footCopyright{
+    margin: 0%;
+    font-size: 30px;
+    color: #999;;
+    font:12px/1.5 "Microsoft yahei", arial, Simsun, sans-serif;
+    text-align: center;
+}

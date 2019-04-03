@@ -1,0 +1,71 @@
+/* 标题 */
+html,head,body{
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.header {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    color: orange;
+    height: 25%;
+    /* background-color: #CACDCB; */
+}
+
+/* 标题字体加大 */
+.header h1 {
+    font-size: 30px;
+}
+
+/* 列容器 */
+.row {  
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0;
+    /* padding-right: 150px; */
+    /* padding-left: 150px; */
+    background-color: white;
+}
+
+/* 创建两个列 */
+/* 边栏 */
+.side {
+    -ms-flex: 30%; /* IE10 */
+    flex: 20%;
+    background-color: #F0F0F0;
+    padding: 20px;
+    
+}
+
+/* 主要的内容区域 */
+.main {   
+    -ms-flex: 70%; /* IE10 */
+    flex: 80%;
+    background-color: white;
+}
+
+/* 底部 */
+.footer {
+    text-align: center;
+    /* background-color: #F5F4FA; */
+    width: 100%;
+}
+
+.footer > *{
+    margin: 0;
+    padding: 15px 0 10px 0;
+    height: 10%;
+}
+
+.footCopyright{
+    margin: 0%;
+    font-size: 30px;
+    color: #999;;
+    font:12px/1.5 "Microsoft yahei", arial, Simsun, sans-serif;
+    text-align: center;
+}
+
