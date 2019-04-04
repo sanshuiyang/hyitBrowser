@@ -179,7 +179,7 @@ class Web {
   }
 }
 
-const web = '';
+let web = '';
 if (window.location === '127.0.0.1') {
   web = new Web(`http://157.0.1.211:6627/api/v1/model/webrpc`);
 } else {

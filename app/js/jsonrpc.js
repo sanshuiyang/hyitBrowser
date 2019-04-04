@@ -109,8 +109,8 @@ export default class JSONrpc {
       case "Login":
         dataBody = JSON.stringify(options.params);
 
-        req = SuperAgent.post(`${window.location.protocol}//${window.location.host}/api/v1/user/login`);
-        // req = SuperAgent.post(`http://157.0.1.211:6627/api/v1/user/login`);
+        // req = SuperAgent.post(`${window.location.protocol}//${window.location.host}/api/v1/user/login`);
+        req = SuperAgent.post(`http://157.0.1.211:6627/api/v1/user/login`);
         for (let key in requestParams.headers) {
           req.set(key, requestParams.headers[key])
         }
