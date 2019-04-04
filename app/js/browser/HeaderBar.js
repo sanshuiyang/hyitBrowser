@@ -32,7 +32,7 @@ export const SideBar = ({
   const logout = e => {
     e.preventDefault();
     web.Logout();
-    window.location.href = `${window.location.protocol}//${window.location.host}/hyit/?state=0`;
+    window.location.reload();
   }
 
   const backMain = e => {
@@ -75,24 +75,6 @@ export const SideBar = ({
           </Dropdown.Menu>
         </Dropdown>
       </li>
-      {/* <ClickOutHandler onClickOut={clickOutside}>
-        <div type="button" >
-          <div className="ButtonGroupOutDiv">
-            <ButtonGroup size="lg" className="ButtonGroup">
-              <Button className="btnList active" onClick={backMain}>首页<i className="fa fa-home" /></Button>
-              <Button className="btnList" onClick={fullScreen}>全屏<i className="fa fa-expand" /></Button>
-              <Button className="btnList" onClick={e => {
-                e.preventDefault()
-                showChangePasswordModal()
-              }} >
-                修改密码<i className="fa fa-cog" />
-              </Button>
-              <Button className="btnList" style={{ border: "none" }} onClick={logout}>退出<i className="fa fa-sign-out" /></Button>
-              <Button className="btnList" style={{ border: "none" }} onClick={getInfo}>获取全部信息<i className="fa fa-sign-out" /></Button>
-            </ButtonGroup>
-          </div>
-        </div>
-      </ClickOutHandler> */}
       <ChangePasswordModal />
     </div>
   )

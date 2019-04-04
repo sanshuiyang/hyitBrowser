@@ -63,8 +63,8 @@ export class Login extends React.Component {
         pass: psd
       })
       .then(res => {
-        location.href = `${window.location.protocol}//${window.location.host}/hyit/?token=${res.token}`;
-        // history.replace("/")
+        location.href = `http://127.0.0.1:5500/production/`;
+        // window.location.reload();
       })
       .catch(e => {
         showAlert("danger", e.message)
@@ -84,12 +84,11 @@ export class Login extends React.Component {
 
   render() {
     const { clearAlert, alert } = this.props
-    const mainPath = `${window.location.protocol}//${window.location.host}/hyit/`
+    const mainPath = `http://157.0.1.211:6627/hyit/`
     if (web.LoggedIn()) {
       return <Redirect to={"/"} />
     }
     let alertBox = <Alert {...alert} onDismiss={clearAlert} />
-    // Make sure you don't show a fading out alert box on the initial web-page load.
     if (!alert.message) alertBox = ""
 
     //定义背景样式

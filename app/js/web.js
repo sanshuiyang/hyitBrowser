@@ -180,7 +180,7 @@ class Web {
 }
 
 let web = '';
-if (window.location === '127.0.0.1') {
+if (window.location.hostname === '127.0.0.1') {
   web = new Web(`http://157.0.1.211:6627/api/v1/model/webrpc`);
 } else {
   web = new Web(`${window.location.protocol}//${window.location.host}/api/v1/model/webrpc`);

@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import logo from "../../img/logo.svg"
-import Background from "../../img/bg.png"
 import Alert from "../alert/Alert"
 import * as actionsAlert from "../alert/actions"
 import InputGroup from "./InputGroup"
@@ -211,7 +210,7 @@ export class Register extends React.Component {
 
   render() {
     const { clearAlert, alert } = this.props
-    const mainPath = `${window.location.protocol}//${window.location.host}/hyit/`
+    const mainPath = `http://157.0.1.211:6627/hyit/`
     if (web.LoggedIn()) {
       return <Redirect to={"/"} />
     }
