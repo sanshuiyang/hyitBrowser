@@ -179,6 +179,6 @@ class Web {
   }
 }
 
-// const web = new Web(`${window.location.protocol}//${window.location.host}/api/v1/model/webrpc`);
-const web = new Web(`http://157.0.1.211:6627/api/v1/model/webrpc`);
+const web = new Web(`${window.location.protocol}//${window.location.host}/api/v1/model/webrpc`);
+// const web = new Web(`http://157.0.1.211:6627/api/v1/model/webrpc`);
 export default web;
