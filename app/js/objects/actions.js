@@ -274,7 +274,6 @@ export const downloadObject = object => {
             }/api/v1/model/download/${currentBucket}/${encObjectName}?token=${
             res.token
             }`
-          // window.location = url
           downloadObjectByGet(url, encObjectName, dispatch);
         })
         .catch(err => {
@@ -411,7 +410,6 @@ const downloadZip = (url, req, dispatch) => {
 
   xhr.onload = function (e) {
     if (this.status == 200) {
-      // dispatch(resetCheckedList())
       var blob = new Blob([this.response], {
         type: "octet/stream"
       })
