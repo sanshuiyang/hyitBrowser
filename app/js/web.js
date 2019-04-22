@@ -174,7 +174,7 @@ class Web {
         throw new Error('服务器不可访问')
       })
       .then(res => {
-        console.log(JSON.stringify(res.body));
+        // console.log(JSON.stringify(res.body));
       })
   }
 }

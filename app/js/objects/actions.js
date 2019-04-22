@@ -24,6 +24,7 @@ import {
 import { getCurrentBucket } from "../buckets/selectors"
 import { getCurrentPrefix, getCheckedList } from "./selectors"
 import * as alertActions from "../alert/actions"
+import * as progressActions from "../progressBar/actions";
 // import { minioBrowserPrefix } from "../constants"
 import storage from "local-storage-fallback"
 import Moment from "moment"
@@ -41,6 +42,9 @@ export const CHECKED_LIST_ADD = "objects/CHECKED_LIST_ADD"
 export const CHECKED_LIST_REMOVE = "objects/CHECKED_LIST_REMOVE"
 export const CHECKED_LIST_RESET = "objects/CHECKED_LIST_RESET"
 export const CHECKED_FIRST_OBJECT = "objects/CHECKED_FIRST_OBJECT" //选中的第一个物体的大小
+
+export const DOWNLOADING = "objects/DOWNLOADING"; //下载状态
+export const WAITSECOND = "objects/WAITSECOND";  //防止分享连点
 
 export const setList = (objects, marker, isTruncated) => ({
   type: SET_LIST,
@@ -332,6 +336,41 @@ const downloadObjectByGet = (url, encObjectName, dispatch) => {
     }
   }
 
+
+  xhr.onloadstart = function () {
+    dispatch(alertActions.set({
+      type: "success",
+      message: "资源请求中"
+    }))
+
+    dispatch(downloading(true))
+  }
+
+  xhr.onprogress = function (event) {
+    let progress = event.loaded / event.total;
+    progress = progress.toString().split(".")[1];
+    if (progress) {
+      progress = +progress.slice(0, 2);
+    }
+    dispatch(progressActions.showProgress({
+      now: progress,
+    }))
+
+  }
+
+  xhr.onloadend = function () {
+    dispatch(progressActions.showProgress({
+      now: -1,
+    }));
+
+    dispatch(alertActions.set({
+      type: "success",
+      message: "资源下载完毕"
+    }))
+
+    dispatch(downloading(false))
+  }
+
   xhr.send();
 }
 
@@ -354,6 +393,29 @@ export const resetCheckedList = () => ({
   type: CHECKED_LIST_RESET
 })
 
+export const downloading = downloading => ({
+  type: DOWNLOADING,
+  downloading
+})
+
+export const waitSecond = waitSecond => {
+  return (dispatch) => {
+    if (waitSecond) {
+      setTimeout(() => {
+        dispatch({
+          type: WAITSECOND,
+          waitSecond: false
+        })
+      }, 30000)
+    }
+    dispatch({
+      type: WAITSECOND,
+      waitSecond: true
+    })
+  }
+}
+
+
 export const downloadCheckedObjects = () => {
   return function (dispatch, getState) {
     const state = getState()
@@ -362,6 +424,7 @@ export const downloadCheckedObjects = () => {
       prefix: getCurrentPrefix(state),
       objects: getCheckedList(state)
     }
+
     if (!web.LoggedIn()) {
       const requestUrl = location.origin + "/api/v1/model/zip?token="
       downloadZip(requestUrl, req, dispatch)
@@ -390,7 +453,7 @@ const downloadZip = (url, req, dispatch) => {
   document.body.appendChild(anchor);
 
   var xhr = new XMLHttpRequest()
-  xhr.open("POST", url, true)
+  xhr.open("POST", url, true);
 
   const token = storage.getItem("token")
   if (token) {
@@ -424,12 +487,42 @@ const downloadZip = (url, req, dispatch) => {
       anchor.remove()
     }
   }
-  xhr.send(JSON.stringify(req));
 
-  dispatch(alertActions.set({
-    type: "success",
-    message: "正在请求资源，请稍等。"
-  }))
+  xhr.onloadstart = function () {
+    dispatch(alertActions.set({
+      type: "success",
+      message: "资源请求中"
+    }))
+
+    dispatch(downloading(true))
+  }
+
+  xhr.onprogress = function (event) {
+    let progress = event.loaded / event.total;
+    progress = progress.toString().split(".")[1]
+    if (progress) {
+      progress = +progress.slice(0, 2);
+    }
+    dispatch(progressActions.showProgress({
+      now: progress,
+    }))
+
+  }
+
+  xhr.onloadend = function () {
+    dispatch(progressActions.showProgress({
+      now: -1,
+    }));
+
+    dispatch(alertActions.set({
+      type: "success",
+      message: "资源下载完毕"
+    }))
+
+    dispatch(downloading(false))
+  }
+
+  xhr.send(JSON.stringify(req));
 
   dispatch(resetCheckedList());
 }

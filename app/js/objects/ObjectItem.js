@@ -16,8 +16,6 @@
 
 import React from "react"
 import { connect } from "react-redux"
-import humanize from "humanize"
-import Moment from "moment"
 import { getDataType } from "../mime"
 import * as actions from "./actions"
 import { getCheckedList } from "./selectors"

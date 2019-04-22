@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 import MainRightContent from "./MainRightContent"
 import MainLeftContent from "./MainLeftContent"
 import AlertContainer from "../alert/AlertContainer"
+import ProgressBarContainer from "../progressBar/ProgressBarContainer";
 
 import StorageInfo from "./StorageInfo"
 
@@ -30,6 +31,7 @@ class Browser extends React.Component {
           {/* <p className="footCopyright">Copyrights©2018:淮阴工学院  湖南翔鹏信息科技有限公司</p> */}
         </div>
         <AlertContainer />
+        <ProgressBarContainer />
       </div>
     )
   }

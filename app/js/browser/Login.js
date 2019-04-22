@@ -63,7 +63,7 @@ export class Login extends React.Component {
         pass: psd
       })
       .then(res => {
-        location.href = `http://127.0.0.1:5500/production/`;
+        location.href = `${window.location.protocol}//${window.location.host}/hyit/`;
         // window.location.reload();
       })
       .catch(e => {
@@ -84,7 +84,7 @@ export class Login extends React.Component {
 
   render() {
     const { clearAlert, alert } = this.props
-    const mainPath = `http://157.0.1.211:6627/hyit/`
+    const mainPath = `${window.location.protocol}//${window.location.host}/hyit/`
     if (web.LoggedIn()) {
       return <Redirect to={"/"} />
     }

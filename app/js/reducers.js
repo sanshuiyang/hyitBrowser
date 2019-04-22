@@ -20,13 +20,15 @@ import alert from "./alert/reducer"
 import buckets from "./buckets/reducer"
 import objects from "./objects/reducer"
 import uploads from "./uploads/reducer"
+import progress from "./progressBar/reducer";
 
 const rootReducer = combineReducers({
   browser,
   alert,
   buckets,
   objects,
-  uploads
+  uploads,
+  progress,
 })
 
 export default rootReducer

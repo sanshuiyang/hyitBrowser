@@ -17,24 +17,16 @@ export class ObjectsBulkActions extends React.Component {
     }
   }
   handleDownload() {
-    const { checkedObjects, allObjects, clearChecked, downloadChecked, downloadObject, alter } = this.props;
-    if (checkedObjects.length === 1 && !checkedObjects[0].endsWith('/')) {
-      downloadObject(checkedObjects[0]);
-      clearChecked();
-
-      let objSize = -1
-      for (let i = 0; i < allObjects.list.length; i++) {
-        if (allObjects.list[i].name == checkedObjects[0]) {
-          objSize = allObjects.list[i].size;
-          break;
-        }
-      }
-      objSize = objSize / 1024 / 1024;
-      if (objSize > 15) {
-        alter('success', "正在请求资源，请稍等。");
-      }
+    const { checkedObjects, clearChecked, downloadChecked, downloadObject, alter, downloading } = this.props;
+    if (downloading) {
+      alter('danger', '请等待此次下载完毕！');
     } else {
-      downloadChecked()
+      if (checkedObjects.length === 1 && !checkedObjects[0].endsWith('/')) {
+        downloadObject(checkedObjects[0]);
+        clearChecked();
+      } else {
+        downloadChecked()
+      }
     }
   }
   allChecked() {
@@ -126,7 +118,8 @@ export class ObjectsBulkActions extends React.Component {
 const mapStateToProps = state => {
   return {
     checkedObjects: getCheckedList(state),
-    allObjects: getAllList(state)
+    allObjects: getAllList(state),
+    downloading: state.objects.downloading,
   }
 }
 

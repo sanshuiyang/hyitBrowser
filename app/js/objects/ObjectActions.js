@@ -20,6 +20,7 @@ import { Dropdown } from "react-bootstrap"
 import ShareObjectModal from "./ShareObjectModal"
 import DeleteObjectConfirmModal from "./DeleteObjectConfirmModal"
 import * as objectsActions from "./actions"
+import * as alertActions from "../alert/actions";
 import {
   SHARE_OBJECT_EXPIRY_DAYS,
   SHARE_OBJECT_EXPIRY_HOURS,
@@ -33,29 +34,48 @@ export class ObjectActions extends React.Component {
       showDeleteConfirmation: false
     }
   }
+
+
   shareObject(e) {
     e.preventDefault()
-    const { object, shareObject } = this.props
+    const { object, shareObject, waitSecond, showAlert, wait } = this.props
+    if (waitSecond) {
+      showAlert({
+        type: 'danger',
+        message: '请稍后再试！',
+      });
+      return;
+    }
+
+    console.log("防止连点");
+
     shareObject(
       object.name,
       SHARE_OBJECT_EXPIRY_DAYS,
       SHARE_OBJECT_EXPIRY_HOURS,
       SHARE_OBJECT_EXPIRY_MINUTES
     )
+
+    wait(true);
   }
+
+
   deleteObject() {
     const { object, deleteObject } = this.props
     deleteObject(object.name)
   }
+
   showDeleteConfirmModal(e) {
     e.preventDefault()
     this.setState({ showDeleteConfirmation: true })
   }
+
   hideDeleteConfirmModal() {
     this.setState({
       showDeleteConfirmation: false
     })
   }
+
   render() {
     const { object, showShareObjectModal, shareObjectName } = this.props
     return (
@@ -94,7 +114,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     object: ownProps.object,
     showShareObjectModal: state.objects.shareObject.show,
-    shareObjectName: state.objects.shareObject.object
+    shareObjectName: state.objects.shareObject.object,
+    waitSecond: state.objects.waitSecond,
   }
 }
 
@@ -102,7 +123,9 @@ const mapDispatchToProps = dispatch => {
   return {
     shareObject: (object, days, hours, minutes) =>
       dispatch(objectsActions.shareObject(object, days, hours, minutes)),
-    deleteObject: object => dispatch(objectsActions.deleteObject(object))
+    deleteObject: object => dispatch(objectsActions.deleteObject(object)),
+    wait: wait => dispatch(objectsActions.waitSecond(wait)),
+    showAlert: alert => dispatch(alertActions.set(alert))
   }
 }
 

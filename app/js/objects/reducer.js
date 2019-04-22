@@ -39,7 +39,9 @@ export default (
       object: "",
       url: ""
     },
-    checkedList: []
+    checkedList: [],
+    downloading: false,
+    waitSecond: false,
   },
   action
 ) => {
@@ -124,6 +126,16 @@ export default (
       return {
         ...state,
         checkedList: []
+      }
+    case actionsObjects.DOWNLOADING:
+      return {
+        ...state,
+        downloading: action.downloading
+      }
+    case actionsObjects.WAITSECOND:
+      return {
+        ...state,
+        waitSecond: action.waitSecond
       }
     default:
       return state
