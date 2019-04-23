@@ -38,16 +38,7 @@ export class ObjectActions extends React.Component {
 
   shareObject(e) {
     e.preventDefault()
-    const { object, shareObject, waitSecond, showAlert, wait } = this.props
-    if (waitSecond) {
-      showAlert({
-        type: 'danger',
-        message: '请稍后再试！',
-      });
-      return;
-    }
-
-    console.log("防止连点");
+    const { object, shareObject } = this.props
 
     shareObject(
       object.name,
@@ -55,8 +46,6 @@ export class ObjectActions extends React.Component {
       SHARE_OBJECT_EXPIRY_HOURS,
       SHARE_OBJECT_EXPIRY_MINUTES
     )
-
-    wait(true);
   }
 
 
@@ -115,7 +104,6 @@ const mapStateToProps = (state, ownProps) => {
     object: ownProps.object,
     showShareObjectModal: state.objects.shareObject.show,
     shareObjectName: state.objects.shareObject.object,
-    waitSecond: state.objects.waitSecond,
   }
 }
 
@@ -124,7 +112,6 @@ const mapDispatchToProps = dispatch => {
     shareObject: (object, days, hours, minutes) =>
       dispatch(objectsActions.shareObject(object, days, hours, minutes)),
     deleteObject: object => dispatch(objectsActions.deleteObject(object)),
-    wait: wait => dispatch(objectsActions.waitSecond(wait)),
     showAlert: alert => dispatch(alertActions.set(alert))
   }
 }

@@ -44,7 +44,6 @@ export const CHECKED_LIST_RESET = "objects/CHECKED_LIST_RESET"
 export const CHECKED_FIRST_OBJECT = "objects/CHECKED_FIRST_OBJECT" //选中的第一个物体的大小
 
 export const DOWNLOADING = "objects/DOWNLOADING"; //下载状态
-export const WAITSECOND = "objects/WAITSECOND";  //防止分享连点
 
 export const setList = (objects, marker, isTruncated) => ({
   type: SET_LIST,
@@ -397,24 +396,6 @@ export const downloading = downloading => ({
   type: DOWNLOADING,
   downloading
 })
-
-export const waitSecond = waitSecond => {
-  return (dispatch) => {
-    if (waitSecond) {
-      setTimeout(() => {
-        dispatch({
-          type: WAITSECOND,
-          waitSecond: false
-        })
-      }, 30000)
-    }
-    dispatch({
-      type: WAITSECOND,
-      waitSecond: true
-    })
-  }
-}
-
 
 export const downloadCheckedObjects = () => {
   return function (dispatch, getState) {
