@@ -63,7 +63,7 @@ export class Login extends React.Component {
         pass: psd
       })
       .then(res => {
-        location.href = `${window.location.protocol}//${window.location.host}/hyit/`;
+        location.href = `${window.location.protocol}//${window.location.host}/hyit/?token=${res.token}`;
         // window.location.reload();
       })
       .catch(e => {

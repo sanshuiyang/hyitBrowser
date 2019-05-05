@@ -18,7 +18,8 @@ export class ChangePasswordModal extends React.Component {
       secretNewKey_1: "请输入旧密码", //输入旧密码
       secretNewKey_2: "", //第一次新密码
       secretNewKey_3: "", //第二次新密码
-      keysReadOnly: false
+      keysReadOnly: false,
+      secretKeyVisible:"text",
     }
   }
 
@@ -63,7 +64,7 @@ export class ChangePasswordModal extends React.Component {
     })
   }
 
-  // Save the auth params and set them.
+  // 更细密码
   setAuth(e) {
     const { showAlert } = this.props
     let secretNewKey_1 = this.state.secretNewKey_1
@@ -84,6 +85,10 @@ export class ChangePasswordModal extends React.Component {
 
 
       let temp = md5.Encryption(secretNewKey_1);
+      console.log(data);
+      console.log(secretOldKey);
+      console.log(temp);
+      console.log(secretNewKey_1);
       // let temp = secretNewKey_1;
       if (temp != secretOldKey) {
         showAlert({

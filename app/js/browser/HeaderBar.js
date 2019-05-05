@@ -9,7 +9,6 @@ import ChangePasswordModal from "./ChangePasswordModal"
 import * as actionsCommon from "./actions"
 
 export const SideBar = ({
-  clickOutside,
   showChangePasswordModal
 }) => {
   const fullScreen = e => {
