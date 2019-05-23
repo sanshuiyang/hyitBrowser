@@ -1,7 +1,6 @@
 {
-  "name": "browser",
+  "name": "hyitbrowser",
   "version": "0.0.1",
-  "description": "Minio Browser",
   "scripts": {
     "test": "node ./test.js",
     "dev": "set NODE_ENV=dev webpack-dev-server --devtool cheap-module-eval-source-map --progress --colors --hot --content-base dev",
@@ -9,19 +8,10 @@
     "release": "set NODE_ENV=production &&  webpack -p --config webpack.production.config.js",
     "format": "esformatter -i 'app/**/*.js'"
   },
-  "jest": {
-    "setupTestFrameworkScriptFile": "./app/js/jest/setup.js",
-    "testURL": "https://localhost:8080",
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/app/js/jest/__mocks__/fileMock.js",
-      "\\.(css|scss)$": "identity-obj-proxy"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/minio/minio"
   },
-  "author": "Minio Inc",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/minio/minio/issues"
