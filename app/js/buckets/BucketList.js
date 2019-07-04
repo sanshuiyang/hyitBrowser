@@ -6,7 +6,6 @@ import { getVisibleBuckets } from "./selectors"
 import BucketContainer from "./BucketContainer"
 import web from "../web"
 import history from "../history"
-// import { pathSlice } from "../utils"
 import "../../css/BucketList.css"
 
 export class BucketList extends React.Component {

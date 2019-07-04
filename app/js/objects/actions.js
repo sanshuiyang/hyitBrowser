@@ -83,27 +83,32 @@ export const fetchObjects = () => {
             prefix: currentPrefix
           })
           .then(res => {
-            let objects = []
-            if (res.objects) {
-              let replaceName = currentPrefix ? currentBucket + "/" + currentPrefix : currentBucket + "/";
-              objects = res.objects.map(object => {
-                return {
-                  ...object,
-                  // name: object.name.replace(currentPrefix, "")
-                  name: object.name.replace(replaceName, "")
-                }
-              })
+            if (
+              currentBucket === getCurrentBucket(getState()) &&
+              currentPrefix === getCurrentPrefix(getState())
+            ) {
+              let objects = []
+              if (res.objects) {
+                let replaceName = currentPrefix ? currentBucket + "/" + currentPrefix : currentBucket + "/";
+                objects = res.objects.map(object => {
+                  return {
+                    ...object,
+                    // name: object.name.replace(currentPrefix, "")
+                    name: object.name.replace(replaceName, "")
+                  }
+                })
+              }
+
+              const sortBy = SORT_BY_LAST_MODIFIED
+              const sortOrder = SORT_ORDER_DESC
+              dispatch(setSortBy(sortBy))
+              dispatch(setSortOrder(sortOrder))
+              const sortedList = sortObjectsList(objects, sortBy, sortOrder)
+              dispatch(setList(sortedList))
+
+              dispatch(setPrefixWritable(res.writable))
+              dispatch(setListLoading(false))
             }
-
-            const sortBy = SORT_BY_LAST_MODIFIED
-            const sortOrder = SORT_ORDER_DESC
-            dispatch(setSortBy(sortBy))
-            dispatch(setSortOrder(sortOrder))
-            const sortedList = sortObjectsList(objects, sortBy, sortOrder)
-            dispatch(setList(sortedList))
-
-            dispatch(setPrefixWritable(res.writable))
-            dispatch(setListLoading(false))
           })
           .catch(err => {
             if (web.LoggedIn()) {

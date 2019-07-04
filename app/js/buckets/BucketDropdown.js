@@ -15,10 +15,8 @@
  */
 
 import React from "react"
-import classNames from "classnames"
 import { connect } from "react-redux"
 import * as actionsBuckets from "./actions"
-import { getCurrentBucket } from "./selectors"
 import Dropdown from "react-bootstrap/lib/Dropdown"
 
 export class BucketDropdown extends React.Component {
@@ -42,7 +40,7 @@ export class BucketDropdown extends React.Component {
   }
 
   render() {
-    const { bucket, showBucketPolicy, deleteBucket, currentBucket } = this.props
+    const { bucket, deleteBucket } = this.props
     return (
       <Dropdown 
         open = {this.state.showBucketDropdown}
@@ -54,17 +52,6 @@ export class BucketDropdown extends React.Component {
           <i className="zmdi zmdi-more-vert" />
         </Dropdown.Toggle>
         <Dropdown.Menu className="dropdown-menu-right" style={{minWidth:'105px',padding:"5px 0"}}>
-          {/* <li>
-            <a 
-              onClick={e => {
-                e.stopPropagation()
-                this.toggleDropdown()
-                showBucketPolicy()
-              }}
-            >
-              编辑
-            </a>
-          </li> */}
           <li>
             <a 
               onClick={e => {

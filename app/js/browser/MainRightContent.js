@@ -1,8 +1,6 @@
 import React from "react"
-import MobileHeader from "./MobileHeader"
 import Header from "./Header"
 import ObjectsSection from "../objects/ObjectsSection"
-// import MainActions from "./MainActions"
 import BucketPolicyModal from "../buckets/BucketPolicyModal"
 import MakeBucketModal from "../buckets/MakeBucketModal"
 import UploadModal from "../uploads/UploadModal"
@@ -13,7 +11,6 @@ export const MainContent = () => (
   <div>
     <ObjectsBulkActions />
     {/* 适应屏幕 */}
-    {/* <MobileHeader /> */}
     <Dropzone>
       {/* 头部 */}
       <Header />  

@@ -16,22 +16,19 @@
 
 import React from "react"
 import Path from "../objects/Path"
-// import StorageInfo from "./StorageInfo"
-import BrowserBtns from "./BrowserBtns"
+import FileActions from "./FileActions"
 import HeaderBar from "./HeaderBar"
 import web from "../web"
 
 export const Header = () => {
   const loggedIn = web.LoggedIn()
   return (
-    <header className="fe-header">
+    loggedIn ? <header className="fe-header">
       <Path />
       <HeaderBar />
-      <BrowserBtns />
-
-      {/* {loggedIn && <StorageInfo />} */}
-      {loggedIn}
+      <FileActions />
     </header>
+      : null
   )
 }
 

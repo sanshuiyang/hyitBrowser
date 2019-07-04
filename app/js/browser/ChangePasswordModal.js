@@ -85,11 +85,6 @@ export class ChangePasswordModal extends React.Component {
 
 
       let temp = md5.Encryption(secretNewKey_1);
-      console.log(data);
-      console.log(secretOldKey);
-      console.log(temp);
-      console.log(secretNewKey_1);
-      // let temp = secretNewKey_1;
       if (temp != secretOldKey) {
         showAlert({
           type: "danger",

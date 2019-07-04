@@ -19,6 +19,7 @@ import history from "../history"
 import * as alertActions from "../alert/actions"
 import * as objectsActions from "../objects/actions"
 import { pathSlice } from "../utils"
+import storage from 'local-storage-fallback'
 
 export const SET_LIST = "buckets/SET_LIST"
 export const ADD = "buckets/ADD"
@@ -28,6 +29,7 @@ export const SET_CURRENT_BUCKET = "buckets/SET_CURRENT_BUCKET"
 export const SHOW_MAKE_BUCKET_MODAL = "buckets/SHOW_MAKE_BUCKET_MODAL"
 export const SHOW_BUCKET_POLICY = "buckets/SHOW_BUCKET_POLICY"
 export const SET_POLICIES = "buckets/SET_POLICIES"
+export const BUCKET_AUTHORITY = "buckets/BUCKET_AUTHORITY"
 
 export const fetchBuckets = () => {
   return function (dispatch) {
@@ -84,6 +86,18 @@ export const setCurrentBucket = bucket => {
   return {
     type: SET_CURRENT_BUCKET,
     bucket
+  }
+}
+
+export const isAuthority = currentBucket => {
+  return function (dispatch) {
+    if (storage.getItem('userName') === 'admin') {
+      dispatch(bucketAuthority(true))
+    } else if (currentBucket === '公共资源') {
+      dispatch(bucketAuthority(false))
+    } else {
+      dispatch(bucketAuthority(true));
+    }
   }
 }
 
@@ -216,3 +230,7 @@ export const hideBucketPolicy = () => ({
   show: false
 })
 
+export const bucketAuthority = authority => ({
+  type: BUCKET_AUTHORITY,
+  authority,
+})
