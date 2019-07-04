@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import humanize from "humanize"
 import * as actionsCommon from "./actions"
 import web from "../web"
-import md5 from "../md5"
+import storege from "local-storage-fallback"
 
 export class StorageInfo extends React.Component {
 
@@ -21,16 +21,20 @@ export class StorageInfo extends React.Component {
 
   componentDidMount() {
     web.GetAuth().then(data => {
-      let result = md5.Encryption("kHRaTmm3aNVyg632sl")
+      console.log(data);
     })
   }
 
   render() {
     const { used } = this.props.storageInfo
+    let userName = '';
+    if (storege.getItem('userName')) {
+      userName = storege.getItem('userName');
+    }
     return (
       <div className="feh-used">
-        {/* <span>用户名： </span>
-        {this.state.accessKey} */}
+        <span>用户名： </span>
+        {userName}
         <div className="fehu-chart">
           <div style={{ width: 0 }} />
         </div>

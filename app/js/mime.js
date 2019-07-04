@@ -33,7 +33,7 @@ const isZip = (name, contentType) => {
 }
 
 const isCode = (name, contentType) => {
-  const codeExt = ['c', 'cpp', 'go', 'py', 'java', 'rb', 'js', 'pl', 'fs',
+  const codeExt = ['c', 'cpp','cs', 'go', 'py', 'java', 'rb', 'js', 'pl', 'fs',
     'php', 'css', 'less', 'scss', 'coffee', 'net', 'html',
     'rs', 'exs', 'scala', 'hs', 'clj', 'el', 'scm', 'lisp',
     'asp', 'aspx']

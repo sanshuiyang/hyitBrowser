@@ -3,9 +3,11 @@ import { connect } from "react-redux"
 import * as actionsBuckets from "./actions"
 import xiaohui from "../../img/xh.png"
 
+const mainPath = `${window.location.protocol}//${window.location.host}/hyit/`
+
 export const BucketSearch = ({ onChange }) => (
   <div>
-    <img src={xiaohui} alt="" />
+    <a href={mainPath}><img src={xiaohui} alt="淮阴工学院" /></a>
     <h1 style={{ display: "inline", color: "#080808",fontFamily:"宋体" }}>素材模型库</h1>
     <br /><br />
     <div

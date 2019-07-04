@@ -1,9 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import * as browserActions from "./actions"
-import web from "../web"
-import history from "../history"
-import ChangePasswordModal from "./ChangePasswordModal"
 import "../../css/Navbar.css"
 import { ButtonGroup, Button } from "react-bootstrap"
 

@@ -37,13 +37,20 @@ export class MakeBucketModal extends React.Component {
 
   onSubmit(e) {
     e.preventDefault()
-    const { showAlert, makeBucket, makeObjectFile } = this.props
+    const { showAlert, makeBucket, makeObjectFile ,bucketsList} = this.props
     let inputFileName = this.state.inputFileName
     inputFileName = inputFileName.trim();
     let inputPattern = /^[\u4E00-\u9FA5a-zA-Z0-9_]{3,16}$/;
     if (!inputPattern.test(inputFileName)) {
       showAlert("danger", "文件夹名要求：数字、字母、下划线、中文、长度为3-16");
       return;
+    }
+
+    for(var i=0;i<bucketsList.length;i++){
+      if(bucketsList[i]===inputFileName){
+        showAlert("danger", "已存在该文件夹！");
+        return;
+      }
     }
 
     if (inputFileName.length > 0) {
@@ -138,7 +145,8 @@ const mapStateToProps = state => {
   return {
     showMakeBucketModal: state.buckets.showMakeBucketModal,
     currentBucket: state.buckets.currentBucket,
-    currentPrefix: getCurrentPrefix(state)
+    currentPrefix: getCurrentPrefix(state),
+    bucketsList: state.buckets.list,
   }
 }
 

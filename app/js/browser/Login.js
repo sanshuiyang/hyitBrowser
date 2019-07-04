@@ -11,6 +11,7 @@ import { Redirect } from "react-router-dom"
 import md5 from "../md5.js"
 import "../../css/Login.css"
 import history from "../history"
+import storage from "local-storage-fallback"
 
 export class Login extends React.Component {
   constructor(props) {
@@ -62,7 +63,8 @@ export class Login extends React.Component {
         login: this.state.accessKey,
         pass: psd
       })
-      .then(res => {
+      .then(res => {  
+        storage.setItem('userName', this.state.accessKey);
         location.href = `${window.location.protocol}//${window.location.host}/hyit/?token=${res.token}`;
         // window.location.reload();
       })

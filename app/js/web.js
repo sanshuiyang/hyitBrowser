@@ -15,7 +15,6 @@
  */
 
 import JSONrpc from './jsonrpc'
-import { minioBrowserPrefix } from './constants.js'
 import Moment from 'moment'
 import storage from 'local-storage-fallback'
 
@@ -89,7 +88,8 @@ class Web {
       })
   }
   Logout() {
-    storage.removeItem('token')
+    storage.removeItem('userName');
+    storage.removeItem('token');
   }
   ServerInfo() {
     return this.makeCall('ServerInfo')
@@ -179,12 +179,6 @@ class Web {
   }
 }
 
-let web = '';
-if (window.location.hostname === '127.0.0.1') {
-  web = new Web(`http://157.0.1.211:6627/api/v1/model/webrpc`);
-} else {
-  web = new Web(`${window.location.protocol}//${window.location.host}/api/v1/model/webrpc`);
-}
-
+const web = new Web(`${window.location.protocol}//${window.location.host}/api/v1/model/webrpc`);
 
 export default web;

@@ -25,12 +25,19 @@ import { getCurrentBucket } from "../buckets/selectors"
 import { getCurrentPrefix, getCheckedList } from "./selectors"
 import * as alertActions from "../alert/actions"
 import * as progressActions from "../progressBar/actions";
-// import { minioBrowserPrefix } from "../constants"
 import storage from "local-storage-fallback"
 import Moment from "moment"
+import {
+  minioBrowserPrefix,
+  SORT_BY_NAME,
+  SORT_BY_SIZE,
+  SORT_BY_LAST_MODIFIED,
+  SORT_ORDER_ASC,
+  SORT_ORDER_DESC
+} from "../constants"
 
 export const SET_LIST = "objects/SET_LIST"
-export const RESET_LIST = "object/RESET_LIST"
+export const RESET_LIST = "objects/RESET_LIST"
 export const APPEND_LIST = "objects/APPEND_LIST"
 export const REMOVE = "objects/REMOVE"
 export const SET_SORT_BY = "objects/SET_SORT_BY"
@@ -42,75 +49,78 @@ export const CHECKED_LIST_ADD = "objects/CHECKED_LIST_ADD"
 export const CHECKED_LIST_REMOVE = "objects/CHECKED_LIST_REMOVE"
 export const CHECKED_LIST_RESET = "objects/CHECKED_LIST_RESET"
 export const CHECKED_FIRST_OBJECT = "objects/CHECKED_FIRST_OBJECT" //选中的第一个物体的大小
+export const SET_LIST_LOADING = "objects/SET_LIST_LOADING"
 
 export const DOWNLOADING = "objects/DOWNLOADING"; //下载状态
 
-export const setList = (objects, marker, isTruncated) => ({
+export const setList = objects => ({
   type: SET_LIST,
-  objects,
-  marker,
-  isTruncated
+  objects
 })
 
 export const resetList = () => ({
   type: RESET_LIST
 })
 
-export const appendList = (objects, marker, isTruncated) => ({
-  type: APPEND_LIST,
-  objects,
-  marker,
-  isTruncated
+export const setListLoading = listLoading => ({
+  type: SET_LIST_LOADING,
+  listLoading
 })
 
-export const fetchObjects = append => {
+export const fetchObjects = () => {
   return function (dispatch, getState) {
+    dispatch(resetList())
     const {
       buckets: { currentBucket },
-      objects: { currentPrefix, marker }
+      objects: { currentPrefix }
     } = getState()
     if (currentBucket) {
-      return web
-        .ListObjects({
-          bucketName: currentBucket,
-          prefix: currentPrefix,
-          marker: append ? marker : ""
-        })
-        .then(res => {
-          let objects = []
-          if (res.objects) {
-            let replaceName = currentPrefix ? currentBucket + "/" + currentPrefix : currentBucket + "/";
-            objects = res.objects.map(object => {
-              return {
-                ...object,
-                // name: object.name.replace(currentPrefix, "")
-                name: object.name.replace(replaceName, "")
-              }
-            })
-          }
-          if (append) {
-            dispatch(appendList(objects, res.nextmarker, res.istruncated))
-          } else {
-            dispatch(setList(objects, res.nextmarker, res.istruncated))
-            dispatch(setSortBy(""))
-            dispatch(setSortOrder(false))
-          }
-          dispatch(setPrefixWritable(res.writable))
-        })
-        .catch(err => {
-          if (web.LoggedIn()) {
-            dispatch(
-              alertActions.set({
-                type: "danger",
-                message: err.message,
-                autoClear: true
+      if (currentBucket) {
+        dispatch(setListLoading(true))
+        return web
+          .ListObjects({
+            bucketName: currentBucket,
+            prefix: currentPrefix
+          })
+          .then(res => {
+            let objects = []
+            if (res.objects) {
+              let replaceName = currentPrefix ? currentBucket + "/" + currentPrefix : currentBucket + "/";
+              objects = res.objects.map(object => {
+                return {
+                  ...object,
+                  // name: object.name.replace(currentPrefix, "")
+                  name: object.name.replace(replaceName, "")
+                }
               })
-            )
-            dispatch(resetList())
-          } else {
-            history.push("/login")
-          }
-        })
+            }
+
+            const sortBy = SORT_BY_LAST_MODIFIED
+            const sortOrder = SORT_ORDER_DESC
+            dispatch(setSortBy(sortBy))
+            dispatch(setSortOrder(sortOrder))
+            const sortedList = sortObjectsList(objects, sortBy, sortOrder)
+            dispatch(setList(sortedList))
+
+            dispatch(setPrefixWritable(res.writable))
+            dispatch(setListLoading(false))
+          })
+          .catch(err => {
+            if (web.LoggedIn()) {
+              dispatch(
+                alertActions.set({
+                  type: "danger",
+                  message: err.message,
+                  autoClear: true
+                })
+              )
+              dispatch(resetList())
+            } else {
+              history.push("/login")
+            }
+            dispatch(setListLoading(false))
+          })
+      }
     }
   }
 }
@@ -118,25 +128,26 @@ export const fetchObjects = append => {
 export const sortObjects = sortBy => {
   return function (dispatch, getState) {
     const { objects } = getState()
-    const sortOrder = objects.sortBy == sortBy ? !objects.sortOrder : true
+    let sortOrder = SORT_ORDER_ASC
+    // Reverse sort order if the list is already sorted on same field
+    if (objects.sortBy === sortBy && objects.sortOrder === SORT_ORDER_ASC) {
+      sortOrder = SORT_ORDER_DESC
+    }
     dispatch(setSortBy(sortBy))
     dispatch(setSortOrder(sortOrder))
-    let list
-    switch (sortBy) {
-      case "name":
-        list = sortObjectsByName(objects.list, sortOrder)
-        break
-      case "size":
-        list = sortObjectsBySize(objects.list, sortOrder)
-        break
-      case "last-modified":
-        list = sortObjectsByDate(objects.list, sortOrder)
-        break
-      default:
-        list = objects.list
-        break
-    }
-    dispatch(setList(list, objects.marker, objects.isTruncated))
+    const sortedList = sortObjectsList(objects.list, sortBy, sortOrder)
+    dispatch(setList(sortedList))
+  }
+}
+
+const sortObjectsList = (list, sortBy, sortOrder) => {
+  switch (sortBy) {
+    case SORT_BY_NAME:
+      return sortObjectsByName(list, sortOrder)
+    case SORT_BY_SIZE:
+      return sortObjectsBySize(list, sortOrder)
+    case SORT_BY_LAST_MODIFIED:
+      return sortObjectsByDate(list, sortOrder)
   }
 }
 

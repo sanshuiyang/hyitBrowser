@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { minioBrowserPrefix } from './constants.js'
+import { minioBrowserPrefix, SORT_ORDER_DESC } from "./constants.js"
 
 export const sortObjectsByName = (objects, order) => {
   let folders = objects.filter(object => object.name.endsWith('/'))
@@ -29,7 +29,7 @@ export const sortObjectsByName = (objects, order) => {
     if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
     return 0
   })
-  if (order) {
+  if (order === SORT_ORDER_DESC) {
     folders = folders.reverse()
     files = files.reverse()
   }
@@ -40,7 +40,7 @@ export const sortObjectsBySize = (objects, order) => {
   let folders = objects.filter(object => object.name.endsWith('/'))
   let files = objects.filter(object => !object.name.endsWith('/'))
   files = files.sort((a, b) => a.size - b.size)
-  if (order)
+  if (order === SORT_ORDER_DESC)
     files = files.reverse()
   return [...folders, ...files]
 }
@@ -49,7 +49,7 @@ export const sortObjectsByDate = (objects, order) => {
   let folders = objects.filter(object => object.name.endsWith('/'))
   let files = objects.filter(object => !object.name.endsWith('/'))
   files = files.sort((a, b) => new Date(a.lastModified).getTime() - new Date(b.lastModified).getTime())
-  if (order)
+  if (order === SORT_ORDER_DESC)
     files = files.reverse()
   return [...folders, ...files]
 }
@@ -59,8 +59,8 @@ export const pathSlice = (path) => {
   let prefix = ''
   let bucket = ''
   if (!path) return {
-      bucket,
-      prefix
+    bucket,
+    prefix
   }
   let objectIndex = path.indexOf('/', 1)
   if (objectIndex == -1) {
