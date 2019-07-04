@@ -17,6 +17,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import * as actionsBuckets from "./actions"
+import * as alertActions from "../alert/actions"
 import Dropdown from "react-bootstrap/lib/Dropdown"
 
 export class BucketDropdown extends React.Component {
@@ -39,26 +40,32 @@ export class BucketDropdown extends React.Component {
     }
   }
 
+  onDeleteBucket(e) {
+    e.stopPropagation()
+    const { bucket, deleteBucket, empty, alert } = this.props
+    if (!empty) {
+      this.toggleDropdown()
+      deleteBucket(bucket)
+    } else {
+      alert('danger', '无法删除空文件夹');
+    }
+  }
+
   render() {
-    const { bucket, deleteBucket } = this.props
     return (
-      <Dropdown 
-        open = {this.state.showBucketDropdown}
-        onToggle = {this.toggleDropdown.bind(this)}
-        className="bucket-dropdown" 
+      <Dropdown
+        open={this.state.showBucketDropdown}
+        onToggle={this.toggleDropdown.bind(this)}
+        className="bucket-dropdown"
         id="bucket-dropdown"
       >
         <Dropdown.Toggle noCaret>
           <i className="zmdi zmdi-more-vert" />
         </Dropdown.Toggle>
-        <Dropdown.Menu className="dropdown-menu-right" style={{minWidth:'105px',padding:"5px 0"}}>
+        <Dropdown.Menu className="dropdown-menu-right" style={{ minWidth: '105px', padding: "5px 0" }}>
           <li>
-            <a 
-              onClick={e => {
-                e.stopPropagation()
-                this.toggleDropdown()
-                deleteBucket(bucket)
-              }}
+            <a
+              onClick={this.onDeleteBucket.bind(this)}
             >
               删除
             </a>
@@ -69,11 +76,18 @@ export class BucketDropdown extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    deleteBucket: bucket => dispatch(actionsBuckets.deleteBucket(bucket)),
-    showBucketPolicy: () => dispatch(actionsBuckets.showBucketPolicy())
+    empty: state.objects.list.length > 0 ? false : true,
   }
 }
 
-export default connect(state => state, mapDispatchToProps)(BucketDropdown)
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteBucket: bucket => dispatch(actionsBuckets.deleteBucket(bucket)),
+    showBucketPolicy: () => dispatch(actionsBuckets.showBucketPolicy()),
+    alert: (type, message) => dispatch(alertActions.set({ type, message })),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BucketDropdown)

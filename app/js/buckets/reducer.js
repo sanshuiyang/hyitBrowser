@@ -32,7 +32,6 @@ export default (
     showMakeBucketModal: false,
     policies: [],
     showBucketPolicy: false,
-    authority: false,
   },
   action
 ) => {
@@ -76,11 +75,6 @@ export default (
       return {
         ...state,
         showBucketPolicy: action.show
-      }
-    case actionsBuckets.BUCKET_AUTHORITY:
-      return {
-        ...state,
-        authority: action.authority,
       }
     default:
       return state

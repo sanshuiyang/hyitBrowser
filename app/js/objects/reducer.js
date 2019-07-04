@@ -41,6 +41,7 @@ export default (
     },
     checkedList: [],
     downloading: false,
+    authority: false,
   },
   action
 ) => {
@@ -55,7 +56,7 @@ export default (
         ...state,
         list: []
       }
-      case actionsObjects.SET_LIST_LOADING:
+    case actionsObjects.SET_LIST_LOADING:
       return {
         ...state,
         listLoading: action.listLoading
@@ -122,6 +123,11 @@ export default (
       return {
         ...state,
         downloading: action.downloading
+      }
+    case actionsObjects.SET_AUTHORITY:
+      return {
+        ...state,
+        authority: action.authority
       }
     default:
       return state

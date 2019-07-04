@@ -28,7 +28,6 @@ import * as progressActions from "../progressBar/actions";
 import storage from "local-storage-fallback"
 import Moment from "moment"
 import {
-  minioBrowserPrefix,
   SORT_BY_NAME,
   SORT_BY_SIZE,
   SORT_BY_LAST_MODIFIED,
@@ -50,7 +49,7 @@ export const CHECKED_LIST_REMOVE = "objects/CHECKED_LIST_REMOVE"
 export const CHECKED_LIST_RESET = "objects/CHECKED_LIST_RESET"
 export const CHECKED_FIRST_OBJECT = "objects/CHECKED_FIRST_OBJECT" //选中的第一个物体的大小
 export const SET_LIST_LOADING = "objects/SET_LIST_LOADING"
-
+export const SET_AUTHORITY = "objects/SET_AUTHORITY"
 export const DOWNLOADING = "objects/DOWNLOADING"; //下载状态
 
 export const setList = objects => ({
@@ -65,6 +64,11 @@ export const resetList = () => ({
 export const setListLoading = listLoading => ({
   type: SET_LIST_LOADING,
   listLoading
+})
+
+export const setAuthority = authority => ({
+  type: SET_AUTHORITY,
+  authority
 })
 
 export const fetchObjects = () => {
@@ -97,6 +101,8 @@ export const fetchObjects = () => {
                     name: object.name.replace(replaceName, "")
                   }
                 })
+              } else {
+                
               }
 
               const sortBy = SORT_BY_LAST_MODIFIED
@@ -108,6 +114,14 @@ export const fetchObjects = () => {
 
               dispatch(setPrefixWritable(res.writable))
               dispatch(setListLoading(false))
+
+              if (storage.getItem('userName') == 'admin') {
+                dispatch(setAuthority(true));
+              } else if (currentBucket === '公共资源') {
+                dispatch(setAuthority(false));
+              } else {
+                dispatch(setAuthority(true));
+              }
             }
           })
           .catch(err => {

@@ -49,15 +49,21 @@ export class ObjectsBulkActions extends React.Component {
     })
   }
   deleteChecked() {
-    const { deleteChecked } = this.props
-    deleteChecked()
-    this.hideDeleteConfirmModal()
+    const { deleteChecked, authority, alter } = this.props
+    if (authority) {
+      deleteChecked()
+      this.hideDeleteConfirmModal()
+    } else {
+      alter("danger", "无权限操作!");
+      this.hideDeleteConfirmModal();
+    }
   }
   hideDeleteConfirmModal() {
     this.setState({
       showDeleteConfirmation: false
     })
   }
+
   render() {
     const { checkedObjects, clearChecked } = this.props
     return (
@@ -120,6 +126,7 @@ const mapStateToProps = state => {
     checkedObjects: getCheckedList(state),
     allObjects: getAllList(state),
     downloading: state.objects.downloading,
+    authority: state.objects.authority,
   }
 }
 

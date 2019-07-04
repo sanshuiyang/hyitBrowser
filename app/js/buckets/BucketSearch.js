@@ -7,8 +7,15 @@ const mainPath = `${window.location.protocol}//${window.location.host}/hyit/`
 
 export const BucketSearch = ({ onChange }) => (
   <div>
-    <a href={mainPath}><img src={xiaohui} alt="淮阴工学院" /></a>
-    <h1 style={{ display: "inline", color: "#080808",fontFamily:"宋体" }}>素材模型库</h1>
+    <a href={mainPath}
+      onClick={e => {
+        e.preventDefault();
+        const mainPath = `${window.location.protocol}//${window.location.host}/hyit/`;
+        window.location.href = mainPath;
+      }}>
+      <img src={xiaohui} alt="淮阴工学院" />
+    </a>
+    <h1 style={{ display: "inline", color: "#080808", fontFamily: "宋体" }}>素材模型库</h1>
     <br /><br />
     <div
       className="input-group ig-dark ig-left ig-search"

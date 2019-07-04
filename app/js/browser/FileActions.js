@@ -3,10 +3,9 @@ import { connect } from "react-redux"
 import * as browserActions from "./actions"
 import * as actionsBuckets from "../buckets/actions"
 import * as uploadsActions from "../uploads/actions"
-
+import * as alertActions from "../alert/actions"
 import { ButtonGroup, Button } from "react-bootstrap"
 
-import { isAuthority } from "../utils";
 
 import "../../css/Navbar.css"
 
@@ -27,13 +26,15 @@ export class BrowserDropdown extends React.Component {
   onShowMakeBucketModal(e) {
     e.preventDefault()
 
-    const { showMakeBucketModal,authority } = this.props;
-    // if(authority){
+    const { showMakeBucketModal,showAlert, authority, } = this.props;
+
+    if (authority) {
       showMakeBucketModal();
-    // }else{
-    //   console.log('无法操作');
-    // }
-    
+    } else {
+      // console.log('无法操作');
+      showAlert('danger','无权限操作！');
+    }
+
   }
   onFileUpload(e) {
     e.preventDefault()
@@ -72,7 +73,7 @@ export class BrowserDropdown extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // authority: isAuthority(state)
+    authority: state.objects.authority,
   }
 }
 
@@ -80,7 +81,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchServerInfo: () => dispatch(browserActions.fetchServerInfo()),
     uploadFile: file => dispatch(uploadsActions.uploadFile(file)),
-    showMakeBucketModal: () => dispatch(actionsBuckets.showMakeBucketModal())
+    showMakeBucketModal: () => dispatch(actionsBuckets.showMakeBucketModal()),
+    showAlert: (type, message) => dispatch(alertActions.set({ type, message }))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(BrowserDropdown)
