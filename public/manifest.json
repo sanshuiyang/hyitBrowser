@@ -1,0 +1,15 @@
+{
+    "short_name": "虚拟仿真实验",
+    "name": "沉浸式城市环境大场景建模及漫游虚拟仿真实验",
+    "icon": [
+        {
+            "src": "favicon.ico",
+            "size": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        }
+    ],
+    "start_url": "./index.html",
+    "display": "standalone",
+    "theme_color": "#000",
+    "background_color": "#fff"
+}

@@ -18,3 +18,5 @@ release
 coverage.txt
 node_modules
 production
+
+*.zip
