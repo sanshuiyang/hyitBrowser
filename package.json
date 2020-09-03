@@ -11,19 +11,20 @@
     "url": "https://github.com/minio/minio"
   },
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/minio/minio/issues"
-  },
-  "homepage": "https://github.com/minio/minio",
+  "homepage": ".",
   "devDependencies": {
     "async": "^1.5.2",
+    "chalk": "^4.1.0",
+    "css-loader": "^4.2.2",
     "customize-cra": "^1.0.0",
-    "less": "^3.9.0",
-    "less-loader": "^4.1.0",
+    "less": "^3.12.2",
+    "less-loader": "5.0.0",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "react-app-rewired": "^2.1.6",
     "react-dev-utils": "^10.2.1",
     "react-scripts": "^3.4.3",
-    "url-loader": "^0.5.7"
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",

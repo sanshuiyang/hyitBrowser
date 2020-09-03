@@ -45,6 +45,7 @@ class Web {
       })
       .then(res => {
         this.CheckTokenTime();
+        console.log(res);
         let json = JSON.parse(res.text)
         let error = json.error
         if (error) {

@@ -4,10 +4,6 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
 class LoadingComponents extends Component{
-    constructor(){
-        super();
-    }
-
     componentDidMount(){
         NProgress.start();
     }

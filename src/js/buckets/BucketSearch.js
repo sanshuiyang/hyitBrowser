@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import * as actionsBuckets from "./actions"
-import xiaohui from "../../img/xh.png"
+import xiaohui from "@/img/xh.png"
 
 const mainPath = `${window.location.protocol}//${window.location.host}/hyit/`
 

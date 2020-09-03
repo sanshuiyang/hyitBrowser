@@ -77,7 +77,7 @@ export class ShareObjectModal extends React.Component {
     hideShareObject()
   }
   render() {
-    const { shareObjectDetails, shareObject, hideShareObject } = this.props
+    const { shareObjectDetails, hideShareObject } = this.props
     return (
       <Modal
         show={true}

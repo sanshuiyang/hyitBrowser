@@ -1,17 +1,19 @@
 
 import React from "react"
 import { connect } from "react-redux"
-import logo from "@/img/logo.svg"
-import Background from "../../img/bg.png"
+import storage from "local-storage-fallback"
+import { Redirect } from "react-router-dom"
+
 import Alert from "../alert/Alert"
 import * as actionsAlert from "../alert/actions"
 import InputGroup from "./InputGroup"
 import web from "../web"
-import { Redirect } from "react-router-dom"
 import md5 from "../md5.js"
-import "../../css/Login.css"
 import history from "../history"
-import storage from "local-storage-fallback"
+import Background from "@/img/bg.png"
+
+import logo from "@/img/logo.svg"
+import "@/css/Login.css"
 
 export class Login extends React.Component {
   constructor(props) {
@@ -43,7 +45,7 @@ export class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const { showAlert, history } = this.props
+    const { showAlert } = this.props
     let message = ""
     if (this.state.accessKey.replace(/\s*/g,"") === "") {
       message = "账号输入无效！"

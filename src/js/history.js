@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import createHistory from "history/createBrowserHistory"
+//require("history").createBrowserHistory
+
+const createHistory = require("history").createBrowserHistory
 
 const history = createHistory(
   {
