@@ -28,6 +28,8 @@ export default class JSONrpc {
     this.path = parsedUrl.path
     this.port = parsedUrl.port
 
+    this.url =`${window.location.protocol}//${window.location.host}/api/v1/`;
+
     switch (parsedUrl.protocol) {
       case 'http:': {
         this.scheme = 'http'
@@ -89,7 +91,7 @@ export default class JSONrpc {
 
         dataBody = JSON.stringify(options.params);
 
-        req = SuperAgent.post(`${window.location.protocol}//${window.location.host}/api/v1/model/bucket`);
+        req = SuperAgent.post(`${this.url}model/bucket`);
         for (let key in requestParams.headers) {
           req.set(key, requestParams.headers[key])
         }
@@ -101,7 +103,7 @@ export default class JSONrpc {
           requestParams.headers.Authorization = 'Bearer ' + token;
         }
 
-        req = SuperAgent.get(`${window.location.protocol}//${window.location.host}/api/v1/user/list`);
+        req = SuperAgent.get(`${this.url}user/list`);
         for (let key in requestParams.headers) {
           req.set(key, requestParams.headers[key])
         }
@@ -109,8 +111,7 @@ export default class JSONrpc {
       case "Login":
         dataBody = JSON.stringify(options.params);
 
-        req = SuperAgent.post(`${window.location.protocol}//${window.location.host}/api/v1/user/login`);
-        // req = SuperAgent.post(`http://157.0.1.211:6627/api/v1/user/login`);
+        req = SuperAgent.post(`${this.url}user/login`);
         for (let key in requestParams.headers) {
           req.set(key, requestParams.headers[key])
         }
@@ -118,8 +119,7 @@ export default class JSONrpc {
       case "register":
         dataBody = JSON.stringify(options.params);
 
-        req = SuperAgent.post(`${window.location.protocol}//${window.location.host}/api/v1/user/`);
-        // req = SuperAgent.post(`http://157.0.1.211:6627/api/v1/user/`);
+        req = SuperAgent.post(`${this.url}user/`);
         for (let key in requestParams.headers) {
           req.set(key, requestParams.headers[key])
         }
@@ -127,8 +127,7 @@ export default class JSONrpc {
       case "registerOtherInfo":
         dataBody = JSON.stringify(options.params);
 
-        req = SuperAgent.post(`${window.location.protocol}//${window.location.host}/api/v1/user/meta/`);
-        // req = SuperAgent.post(`http://157.0.1.211:6627/api/v1/user/meta`);
+        req = SuperAgent.post(`${this.url}user/meta/`);
         for (let key in requestParams.headers) {
           req.set(key, requestParams.headers[key])
         }

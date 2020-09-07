@@ -65,7 +65,8 @@ export class Login extends React.Component {
         login: this.state.accessKey,
         pass: psd
       })
-      .then(res => {  
+      .then(res => {
+        console.log(res);
         storage.setItem('userName', this.state.accessKey);
         window.location.href = `${window.location.protocol}//${window.location.host}/hyit/?token=${res.token}`;
         // window.location.reload();

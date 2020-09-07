@@ -68,6 +68,7 @@ class Web {
   Login(args) {
     return this.makeCall('Login', args)
       .then(res => {
+        console.log(res);
         storage.setItem('token', `${res.token}`)
         return res
       })
@@ -176,6 +177,7 @@ class Web {
   }
 }
 
+//http://103.61.39.178:21011/api/v1/model/webrpc
 const web = new Web(`${window.location.protocol}//${window.location.host}/api/v1/model/webrpc`);
 
 export default web;
