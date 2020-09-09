@@ -26,16 +26,16 @@ module.exports = override(
                 options: {
                     // The `mimetype` and `encoding` arguments will be obtained from your options
                     // The `resourcePath` argument is path to file.
-                    generator: (content, mimetype, encoding, resourcePath) => {
-                        console.log("资源路径:" + resourcePath);
-                    },
+                    // generator: (content, mimetype, encoding, resourcePath) => {
+                    //     console.log("资源路径:" + resourcePath);
+                    // },
                 },
             },
         ],
     }),
     addWebpackModuleRule(
         {
-            test: /\.less$/,
+            test: /\.(less|css)$/,
             use: [
                 {
                     loader: 'style-loader',

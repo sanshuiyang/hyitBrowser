@@ -4,10 +4,8 @@ import * as browserActions from "./actions"
 import * as actionsBuckets from "../buckets/actions"
 import * as uploadsActions from "../uploads/actions"
 import * as alertActions from "../alert/actions"
-import { ButtonGroup, Button } from "react-bootstrap"
-
-
-import "../../css/Navbar.css"
+import { ButtonGroup } from "react-bootstrap"
+import Button from "../components/button";
 
 export class BrowserDropdown extends React.Component {
   constructor(props) {
@@ -47,12 +45,18 @@ export class BrowserDropdown extends React.Component {
     e.target.value = null
   }
 
+  onShowStuentInfo(e){
+    e.preventDefault();
+  }
+
   render() {
     return (
       <li style={{ listStyle: "none" }}>
         <ButtonGroup size="lg">
-          <Button className="btn btn-primary spanList" onClick={this.onShowMakeBucketModal.bind(this)}>创建文件夹<i className="fa fa-hdd-o" /></Button>
-          <div type="button" className="btn btn-primary spanList" style={{ width: "100px", display: "inline-block" }}>
+
+          <Button className="btns-item" onClick={this.onShowMakeBucketModal.bind(this)}>创建文件夹</Button>        
+         
+          <div type="button" className="btn btns-item " style={{ display: "inline-block",cursor:"pointer" }}>
             <input
               type="file"
               onChange={this.onFileUpload.bind(this)}
@@ -60,11 +64,10 @@ export class BrowserDropdown extends React.Component {
               id="file-input"
               multiple={true}
             />
-            <label htmlFor="file-input">
-              {" "}
-              上传文件<i className="fa fa-cloud-upload" />{" "}
-            </label>
+            上传文件
           </div>
+
+          <Button className="btns-item" onClick={this.onShowStuentInfo.bind(this)}>班级成员</Button>
         </ButtonGroup>
       </li>
     )

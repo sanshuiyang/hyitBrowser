@@ -17,7 +17,6 @@
 import React from "react"
 import Path from "../objects/Path"
 import FileActions from "./FileActions"
-import HeaderBar from "./HeaderBar"
 import web from "../web"
 
 export const Header = () => {
@@ -25,7 +24,6 @@ export const Header = () => {
   return (
     loggedIn ? <header className="fe-header">
       <Path />
-      <HeaderBar />
       <FileActions />
     </header>
       : null

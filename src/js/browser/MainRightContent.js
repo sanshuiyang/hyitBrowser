@@ -1,5 +1,5 @@
 import React from "react"
-import Header from "./Header"
+import Header from "./ContentHeader"
 import ObjectsSection from "../objects/ObjectsSection"
 import BucketPolicyModal from "../buckets/BucketPolicyModal"
 import MakeBucketModal from "../buckets/MakeBucketModal"

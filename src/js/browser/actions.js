@@ -21,6 +21,12 @@ export const CLOSE_SIDEBAR = "common/CLOSE_SIDEBAR"
 export const SET_STORAGE_INFO = "common/SET_STORAGE_INFO"
 export const SET_SERVER_INFO = "common/SET_SERVER_INFO"
 export const SHOW_CHANGE_PASSWORD_MODAL = "common/SHOW_CHANGE_PASSWORD_MODAL"
+export const SHOW_WND_MODAL = "common/SHOW_WND_MODAL"
+
+export const showWndModal = modalType => ({
+  type: SHOW_WND_MODAL,
+  modalType
+})
 
 export const toggleSidebar = () => ({
   type: TOGGLE_SIDEBAR

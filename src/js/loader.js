@@ -15,9 +15,10 @@
  */
 
 //动画
-let delay = [0, 400]
+let delay = [0, 400];
 
 function handleLoader(i) {
+  console.log(i);
   if (i < 2) {
     setTimeout(function() {
       document.querySelector(".page-load").classList.add("pl-" + i)

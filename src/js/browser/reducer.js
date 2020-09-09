@@ -22,7 +22,8 @@ export default (
     storageInfo: { total: 0, free: 0 },
     serverInfo: {},
     showChangePasswordModal: false,
-    accessKey:''
+    accessKey: '',
+    modalType: null
   },
   action
 ) => {
@@ -46,6 +47,11 @@ export default (
         ...state,
         showChangePasswordModal: action.show
       }
+    case actionsCommon.SHOW_WND_MODAL: {
+      return Object.assign({}, state, {
+        modalType: action.modalType
+      })
+    }
     default:
       return state
   }

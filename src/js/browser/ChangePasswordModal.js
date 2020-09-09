@@ -161,7 +161,7 @@ export class ChangePasswordModal extends React.Component {
               !this.state.secretKeyVisible
             )}
             className={
-              "toggle-password fa fa-eye " +
+              "toggle-password fas fa-eye " +
               (this.state.secretKeyVisible ? "toggled" : "")
             }
           />

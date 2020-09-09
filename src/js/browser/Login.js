@@ -13,7 +13,6 @@ import history from "../history"
 import Background from "@/img/bg.png"
 
 import logo from "@/img/logo.svg"
-import "@/css/Login.css"
 
 export class Login extends React.Component {
   constructor(props) {
@@ -68,8 +67,8 @@ export class Login extends React.Component {
       .then(res => {
         console.log(res);
         storage.setItem('userName', this.state.accessKey);
-        window.location.href = `${window.location.protocol}//${window.location.host}/hyit/?token=${res.token}`;
-        // window.location.reload();
+        // window.location.href = `${window.location.protocol}//${window.location.host}/hyit/?token=${res.token}`;
+        window.location.reload();
       })
       .catch(e => {
         showAlert("danger", e.message)

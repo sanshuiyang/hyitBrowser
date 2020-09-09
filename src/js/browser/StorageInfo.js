@@ -20,9 +20,9 @@ export class StorageInfo extends React.Component {
   }
 
   componentDidMount() {
-    web.GetAuth().then(data => {
-      console.log(data);
-    })
+    // web.GetAuth().then(data => {
+    //   console.log(data);
+    // })
   }
 
   render() {

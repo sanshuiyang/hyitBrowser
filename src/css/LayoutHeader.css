@@ -1,0 +1,117 @@
+.logo-container {
+    position: relative;
+    height: 100%;
+}
+
+.logo {
+    position: absolute;
+    height: 100%;
+}
+
+.logo img {
+    width: 25%;
+}
+
+.logo h1 {
+    display: inline;
+    color: #777777;
+    font-family: "微软雅黑";
+}
+
+.btns {
+    position: absolute;
+    right: 0;
+    top: 20%;
+    width: 50%;
+}
+
+.btns-item {
+    background-color: white;
+    border: 1px solid #cccccc;
+    margin-left: 5%;
+    font-size: 1.2em;
+    font-family: Microsoft YaHei, Microsoft YaHei-Normal;
+    font-weight: Normal;
+    letter-spacing: 4px;
+    text-align: center;
+    color: #777777;
+    line-height: 1.5em;
+}
+
+.btns-item:hover{
+    border-color: #009ad6;
+}
+
+.btns-item:active{
+    color: rgb(38, 86, 231);
+}
+
+.btns .btns-item:last-child {
+    border: none;
+    position: relative;
+}
+
+.btns .btns-item .msg-nums {
+    position: absolute;
+    top: 20%;
+    right: -5px;
+    color: white;
+    background-color: red;
+    border-radius: 50% ;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+#top-right-menu {
+    float: right;
+    width: 4em;
+}
+
+li {
+    list-style: none;
+}
+
+.color-red {
+    color: red;
+}
+
+.main-container {
+    overflow: scroll;
+}
+
+@media (min-width: 768px) {
+    .navbar-collapse.hide {
+        display: block!important;
+        height: auto!important;
+        padding-bottom: 0;
+        overflow: visible!important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-default.navbar-fixed-sm {
+        top: 0;
+        border-width: 0 0 1px;
+        position: fixed;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+}
+
+.btnTxt {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.btnTxt>li {
+    float: right;
+    font-size: 15px;
+    color: black;
+    text-align: center;
+    padding: 0px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
