@@ -4,7 +4,6 @@ import CreateClass from "./CreateClass";
 import CreatedGroup from "./CreateGroup";
 import JoinGroup from "./JoinGroup";
 import MsgLst from "./MsgLst";
-import NoticeLst from "./NoticeLst";
 import * as actionsCommon from "../browser/actions"
 
 
@@ -35,8 +34,6 @@ class Index extends Component {
                 return <JoinGroup onSure={this.onSure} onHide={this.onHide} />
             case "MsgLst":
                 return <MsgLst onSure={this.onSure} onHide={this.onHide} />
-            case "NoticeLst":
-                return <NoticeLst onSure={this.onSure} onHide={this.onHide} />
             case "Hide":
             default:
                 this.onHide();
@@ -47,10 +44,9 @@ class Index extends Component {
     render() {
         const { modalType } = this.props;
         console.log(modalType);
-        // const Modal = this.SwitchModal(modalType);
         return (
+            // modalType ? this.SwitchModal(modalType) : this.SwitchModal("MsgLst")
             modalType ? this.SwitchModal(modalType) : null
-            // <div>12341</div>
         )
 
     }

@@ -35,7 +35,7 @@ class LRBtns extends React.Component {
     render() {
         const { l_title, r_title, l_key, r_key } = this.props
         return (
-            <div style={{ width: "80%", margin: "0 auto", padding: "10%", backgroundColor: "white", boxSizing: "border-box", border: "1px solid black" }}>
+            <div style={{ marginLeft: "35%" }}>
                 <Button
                     className={`l-btn button ${this.state.lActive ? "active" : ""}`} onClick={() => this.handleClick(l_key)} >
                     {l_title}
