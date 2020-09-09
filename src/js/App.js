@@ -22,11 +22,13 @@ const Login = Loadable(() => import("./browser/Login"));
 const Register = Loadable(() => import("./browser/Register"));
 const Browser = Loadable(() => import("./browser/Browser"));
 const WndModal = Loadable(() => import("./wndModal"));
+const TestCom =Loadable(()=>import("./testCom"));
 
 export const App = () => {
   return (
     <>
       <Switch>
+        <Route path={`/test`} component={TestCom} />
         <Route path={`/login`} component={Login} />
         <Route path={`/register`} component={Register} />
         <Route path={"/:bucket?/*"} component={Browser} />

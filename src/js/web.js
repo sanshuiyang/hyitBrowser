@@ -175,6 +175,15 @@ class Web {
         // console.log(JSON.stringify(res.body));
       })
   }
+  Refuse(args) {
+    console.log("拒绝信息：" + args);
+  }
+  Agree(args) {
+    console.log("同意加入：" + args);
+  }
+  FetchMsgList() {
+    console.log("拉取未处理信息列表。");
+  }
 }
 
 //http://103.61.39.178:21011/api/v1/model/webrpc
