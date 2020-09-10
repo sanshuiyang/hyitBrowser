@@ -1,3 +1,10 @@
+.modal-body {
+    padding-top: 0;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 350px;
+}
+
 .closeBtn {
     position: absolute;
     top: 0;
@@ -6,6 +13,6 @@
     font-size: 1.3em;
 }
 
-.closeBtn:hover{
+.closeBtn:hover {
     color: #a1a3a6;
 }

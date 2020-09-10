@@ -1,4 +1,4 @@
-const { override, addWebpackAlias, addLessLoader, addWebpackPlugin, addWebpackModuleRule } = require('customize-cra');
+const { override, addWebpackAlias, addLessLoader, addWebpackPlugin, addWebpackModuleRule, fixBabelImports } = require('customize-cra');
 const a = require('url-loader');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');

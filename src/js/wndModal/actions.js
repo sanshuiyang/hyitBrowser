@@ -6,7 +6,7 @@ export const REMOVE = "msg/Remove";
 export const FETCH_MSG_LIST = "msg/FetchMsgList";
 export const SET_MSG_LIST = "msg/SetMsgList";
 
-export const refusse = msg => {
+export const agree = msg => {
     return function (dispatch) {
         return web.Agree().then(res => {
             console.log("同意加入");
@@ -28,7 +28,7 @@ export const refusse = msg => {
 
 export const removeMsg = msg => {
     return ({
-        type: CLEAR,
+        type: REMOVE,
         msg
     })
 }

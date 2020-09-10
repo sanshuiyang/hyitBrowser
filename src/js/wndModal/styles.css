@@ -1,0 +1,46 @@
+/*       create-class-container           */
+
+.create-class-container {
+    width: 80%;
+    margin: 0 auto;
+    padding-left: 5%;
+}
+
+.create-class-container>div {
+    margin-top: 15px;
+}
+
+.title {
+    width: 30%;
+    text-align: right;
+}
+
+.dropdown-header {
+    width: 100%;
+}
+
+.create-class-container .cls-content {
+    width: 60%;
+    display: inline-block;
+}
+
+.cls-input-name {
+    width: 100%;
+    display: inline-block;
+}
+
+.cls-sub {
+    margin-left: 45%;
+}
+
+.cls-sub-btn{
+    font-size: 1em;
+}
+
+.cls-content .input-num{
+    width: 20%;
+    text-shadow: none;
+    border: none;
+    border-bottom:1px solid #777777;
+    text-align: center;
+}

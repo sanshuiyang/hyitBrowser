@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Modal from "../components/modal";
 import { Button } from "react-bootstrap"
+import { connect } from "react-redux"
 import Btns from "../components/buttons";
+import MsgLstItem from "./MsgLstItem";
 
 class Index extends Component {
     constructor(props) {
@@ -28,8 +30,8 @@ class Index extends Component {
     }
 
     render() {
-        const { onSure } = this.props;
-        const { l_key, r_key,currentPlane } = this.state;
+        const { onSure, msgList } = this.props;
+        const { l_key, r_key, currentPlane } = this.state;
         return (
             <>
                 <Modal {...this.props}>
@@ -39,17 +41,46 @@ class Index extends Component {
                         l_key={l_key}
                         r_key={r_key}
                         onDoSth={this.switchPlane}
-                        style={{marginLeft:"35%"}}
+                        style={{ marginLeft: "35%" }}
+                        showFooter={true}
+                        successTxt="提交按钮"
+                        onSure={() => { onSure(this.handleSure) }}
                     />
-                {
-                    currentPlane==l_key?"通知":"消息"
-                }
-                <Button onClick={() => { onSure(this.handleSure) }}>1234</Button>
+                    {
+                        currentPlane == l_key ?
+                            msgList.filter(item => item.infoType == "envelope")
+                                .map((value, index) => (
+                                    <MsgLstItem
+                                        key={index}
+                                        infoType={value.infoType}
+                                        content={value.content}
+                                        btn1={value.btn1}
+                                        btn2={value.btn2}
+                                        time={value.time}
+                                    />
+                                )) :
+                            msgList.filter(item => item.infoType !== "envelope")
+                                .map((value, index) => (
+                                    <MsgLstItem
+                                        key={index}
+                                        infoType={value.infoType}
+                                        content={value.content}
+                                        btn1={value.btn1}
+                                        btn2={value.btn2}
+                                        time={value.time}
+                                    />
+                                ))
+                    }
                 </Modal>
             </>
         )
-
     }
 }
 
-export default Index;
+const mapStateToProps = state => {
+    return {
+        msgList: state.message.msgList
+    }
+}
+
+export default connect(mapStateToProps, null)(Index);

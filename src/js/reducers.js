@@ -21,6 +21,7 @@ import buckets from "./buckets/reducer"
 import objects from "./objects/reducer"
 import uploads from "./uploads/reducer"
 import progress from "./progressBar/reducer";
+import message from "./wndModal/reducer";
 
 const rootReducer = combineReducers({
   browser,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   objects,
   uploads,
   progress,
+  message,
 })
 
 export default rootReducer

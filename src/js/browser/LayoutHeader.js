@@ -14,7 +14,9 @@ const mainPath = `${window.location.protocol}//${window.location.host}/hyit/`
 
 export const SideBar = ({
   showChangePasswordModal,
-  showWndModal
+  showWndModal,
+  userInfo,
+  msgNums
 }) => {
 
   const fullScreen = e => {
@@ -54,6 +56,7 @@ export const SideBar = ({
 
   const study = e => {
     e.preventDefault();
+    userInfo.role == "teacher" ?showWndModal("CreateClass"):showWndModal("CreateClass")
   }
 
   return (
@@ -82,7 +85,7 @@ export const SideBar = ({
             onClick={study}
             className="btns-item"
           >
-            创建班级
+            {userInfo.role == "teacher" ? "创建班级" : "加入班级"}
           </Button>
           <Button
             onClick={fullScreen}
@@ -110,7 +113,7 @@ export const SideBar = ({
             className="btns-item"
           >
             未读消息
-            <div className="msg-nums">11</div>
+            <div className="msg-nums">{msgNums}</div>
           </Button>
         </ButtonGroup>
       </div>
@@ -121,7 +124,9 @@ export const SideBar = ({
 
 const mapStateToProps = state => {
   return {
-    sidebarOpen: state.browser.sidebarOpen
+    sidebarOpen: state.browser.sidebarOpen,
+    userInfo: state.browser.userInfo,
+    msgNums: state.message.msgList.length,
   }
 }
 

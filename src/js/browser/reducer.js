@@ -23,7 +23,13 @@ export default (
     serverInfo: {},
     showChangePasswordModal: false,
     accessKey: '',
-    modalType: null
+    modalType: null,
+    userInfo: {
+      userName: "三水杨",
+      role: "teacher",
+      class: "二班三班",
+      department: "计通学院"
+    }
   },
   action
 ) => {

@@ -13,16 +13,14 @@ class Index extends Component {
                 bsSize="large"
                 onHide={onHide}
                 aria-labelledby="contained-modal-title-sm"
+                className="modal-container"
             >
-
                 <Modal.Header>
                     {title ? <Modal.Title >{title}</Modal.Title> : null}
                     <div className="closeBtn" onClick={onHide}>x</div>
                 </Modal.Header>
-                <Modal.Body style={{ paddingTop: "0" }}>
-                    <div style={{ width: "80%", margin: "0 auto" }}>
-                        {children}
-                    </div>
+                <Modal.Body className="modal-body">
+                    {children}
                 </Modal.Body>
                 {
                     showFooter ?

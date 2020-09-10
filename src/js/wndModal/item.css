@@ -1,6 +1,26 @@
-span{
+span {
     font-size: 1.2em;
     line-height: 2em;
     margin-left: 3px;
+    display: inline-block;
 }
 
+.item-contanier {
+    border-bottom: 1px solid #777777;
+    padding-bottom: 3px;
+}
+
+.item-contanier:hover {
+    background-color: #cccccc;
+    cursor: pointer;
+}
+
+.content {
+    display: inline-block;
+    min-width: 70%;
+    /* width: 50%; */
+}
+
+.time {
+    font-size: 0.9em;
+}
