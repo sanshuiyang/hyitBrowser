@@ -34,7 +34,12 @@ class Index extends Component {
         const { l_key, r_key, currentPlane } = this.state;
         return (
             <>
-                <Modal {...this.props}>
+                <Modal
+                    {...this.props}
+                    showFooter={true}
+                    successTxt="提交按钮"
+                    onSure={() => { onSure(this.handleSure) }}
+                >
                     <Btns
                         l_title="通知"
                         r_title="消息"
@@ -42,9 +47,6 @@ class Index extends Component {
                         r_key={r_key}
                         onDoSth={this.switchPlane}
                         style={{ marginLeft: "35%" }}
-                        showFooter={true}
-                        successTxt="提交按钮"
-                        onSure={() => { onSure(this.handleSure) }}
                     />
                     {
                         currentPlane == l_key ?

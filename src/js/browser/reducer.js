@@ -26,7 +26,7 @@ export default (
     modalType: null,
     userInfo: {
       userName: "三水杨",
-      role: "teacher",
+      role: "student",
       class: "二班三班",
       department: "计通学院"
     }

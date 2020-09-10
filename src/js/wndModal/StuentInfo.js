@@ -9,8 +9,10 @@ class Index extends Component {
     render() {
         return (
             <>
-                <Modal>
-                    创建小组
+                <Modal
+                    
+                >
+                    学生信息
                 </Modal>
             </>
         )

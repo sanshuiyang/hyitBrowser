@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import CreateClass from "./CreateClass";
-import CreatedGroup from "./CreateGroup";
+import StuentInfo from "./StuentInfo";
 import JoinGroup from "./JoinGroup";
 import MsgLst from "./MsgLst";
 import * as actionsCommon from "../browser/actions"
@@ -30,8 +30,8 @@ class Index extends Component {
         switch (modalType) {
             case "CreateClass":
                 return <CreateClass onSure={this.onSure} onHide={this.onHide} />
-            case "CreatedGroup":
-                return <CreatedGroup onSure={this.onSure} onHide={this.onHide} />
+            case "StuentInfo":
+                return <StuentInfo onSure={this.onSure} onHide={this.onHide} />
             case "JoinClass":
                 return <JoinGroup onSure={this.onSure} onHide={this.onHide} />
             case "MsgLst":
@@ -47,8 +47,8 @@ class Index extends Component {
         const { modalType } = this.props;
         console.log(modalType);
         return (
-            modalType ? this.SwitchModal(modalType) : this.SwitchModal("CreateClass")
-            // modalType ? this.SwitchModal(modalType) : null
+            // modalType ? this.SwitchModal(modalType) : this.SwitchModal("JoinClass")
+            modalType ? this.SwitchModal(modalType) : null
         )
 
     }

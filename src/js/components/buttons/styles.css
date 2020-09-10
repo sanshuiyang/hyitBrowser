@@ -2,8 +2,7 @@
     letter-spacing: 5px;
     font-size: 1.2em;
     padding-left: 20px;
-    width: 100px;
-    
+    min-width: 100px;
 }
 
 .l-btn {

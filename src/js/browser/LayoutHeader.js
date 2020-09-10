@@ -56,7 +56,7 @@ export const SideBar = ({
 
   const study = e => {
     e.preventDefault();
-    userInfo.role == "teacher" ?showWndModal("CreateClass"):showWndModal("CreateClass")
+    userInfo.role == "teacher" ?showWndModal("CreateClass"):showWndModal("JoinClass")
   }
 
   return (

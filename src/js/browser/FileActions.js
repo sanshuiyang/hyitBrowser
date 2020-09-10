@@ -47,6 +47,7 @@ export class BrowserDropdown extends React.Component {
 
   onShowStuentInfo(e){
     e.preventDefault();
+    
   }
 
   render() {
