@@ -16,7 +16,7 @@ class Index extends Component {
                 className="modal-container"
             >
                 <Modal.Header>
-                    {title ? <Modal.Title >{title}</Modal.Title> : null}
+                    {title ? <Modal.Title style={{ textAlign: "center" }} >{title}</Modal.Title> : null}
                     <div className="closeBtn" onClick={onHide}>x</div>
                 </Modal.Header>
                 <Modal.Body className="modal-body">

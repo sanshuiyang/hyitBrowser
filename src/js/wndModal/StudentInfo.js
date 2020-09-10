@@ -7,10 +7,12 @@ class Index extends Component {
     }
 
     render() {
+        const { onHide } = this.props;
         return (
             <>
                 <Modal
-                    
+                    title="2020级上学期虚拟现实大场景漫游二班学生名单"
+                    onHide={onHide}
                 >
                     学生信息
                 </Modal>
