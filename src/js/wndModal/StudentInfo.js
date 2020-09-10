@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Modal from "../components/modal";
+import { connect } from "react-redux";
+import StdInfo from "./StudentInfoByStd";
+import TchInfo from "./StudentInfoByTch";
 
 class Index extends Component {
     constructor(props) {
@@ -7,14 +10,18 @@ class Index extends Component {
     }
 
     render() {
-        const { onHide } = this.props;
+        const { onHide, userInfo } = this.props;
         return (
             <>
                 <Modal
                     title="2020级上学期虚拟现实大场景漫游二班学生名单"
                     onHide={onHide}
                 >
-                    学生信息
+                    {
+                        userInfo && userInfo.role == "teacher" ?
+                            <StdInfo /> :
+                            <TchInfo />
+                    }
                 </Modal>
             </>
         )
@@ -22,4 +29,10 @@ class Index extends Component {
     }
 }
 
-export default Index;
+const mapStateToProps = state => {
+    return {
+        userInfo: state.browser.userInfo
+    }
+}
+
+export default connect(mapStateToProps, null)(Index);
