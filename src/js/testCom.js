@@ -1,5 +1,5 @@
 import React from "react";
-import TestCom from "./components/dropdown";
+import TestCom from "./components/confirmBox";
 import Moment from "moment";
 
 const radioList = [
@@ -22,7 +22,7 @@ const dropdown = {
     ]
 }
 
-const Index = () => {
+class Index extends React.Component {
     // const GetSth = sth => {
     //     console.log("get sth +" + sth);
     // }
@@ -35,9 +35,31 @@ const Index = () => {
     //         onDoSth={GetSth}
     //     />
     // </div>
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: true,
+        }
 
-    return <TestCom obj={dropdown}
-    />
+        this.handleSure = this.handleSure.bind(this);
+    }
+
+    handleSure = () => {
+        console.log("确定");
+        console.log(this.state.show);
+        this.setState({
+            show: !this.state.show
+        })
+    }
+
+    render() {
+        return <TestCom
+            onSure={this.handleSure}
+            onBack={() => { this.setState({ show: !this.state.show }) }}
+            content="提交作业。"
+            show={this.state.show}
+        />
+    }
 }
 
 export default Index;

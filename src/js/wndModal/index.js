@@ -26,7 +26,7 @@ class Index extends Component {
     }
 
     SwitchModal = modalType => {
-        console.log(modalType);
+        // console.log(modalType);
         switch (modalType) {
             case "CreateClass":
                 return <CreateClass onSure={this.onSure} onHide={this.onHide} />
@@ -45,10 +45,10 @@ class Index extends Component {
 
     render() {
         const { modalType } = this.props;
-        console.log(modalType);
+        // console.log(modalType);
         return (
-            modalType ? this.SwitchModal(modalType) : this.SwitchModal("StuentInfo")
-            // modalType ? this.SwitchModal(modalType) : null
+            // modalType ? this.SwitchModal(modalType) : this.SwitchModal("StuentInfo")
+            modalType ? this.SwitchModal(modalType) : null
         )
 
     }

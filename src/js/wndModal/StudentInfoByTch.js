@@ -8,20 +8,20 @@ class Index extends Component {
     constructor(props) {
         super(props);
 
-        this.jobInfo = this.jobInfo.bind(this);
+        this.workInfo = this.workInfo.bind(this);
         this.onlineShow = this.onlineShow.bind(this);
     }
 
-    jobInfo = (nameAndJobName) => {
-        console.log(nameAndJobName);
+    workInfo = (nameAndWorkName) => {
+        console.log(nameAndWorkName);
     }
 
-    onlineShow = (nameAndJobName) => {
-        console.log(nameAndJobName);
+    onlineShow = (nameAndWorkName) => {
+        console.log(nameAndWorkName);
     }
 
     render() {
-        const { jobList } = this.props;
+        const { workList } = this.props;
         const TableDate = () => (
             <Table striped bordered condensed hover >
                 <thead className="thead">
@@ -34,15 +34,15 @@ class Index extends Component {
                 </thead>
                 <tbody className="tbody">
                     {
-                        jobList.map((value, index) => (
+                        workList.map((value, index) => (
                             <tr key={index}>
                                 <td>{value.name}</td>
-                                <td>{value.jobName}</td>
+                                <td>{value.workName}</td>
                                 <td>{value.score}</td>
                                 <td>
-                                    <Button onClick={() => this.jobInfo({ name: value.name, jobName: value.jobName })}>作业介绍</Button>
+                                    <Button onClick={() => this.workInfo({ name: value.name, workName: value.workName })}>作业介绍</Button>
                                     <Space width={5} />
-                                    <Button onClick={() => this.onlineShow({ name: value.name, jobName: value.jobName })}>在线观看</Button>
+                                    <Button onClick={() => this.onlineShow({ name: value.name, workName: value.workName })}>在线观看</Button>
                                 </td>
                             </tr>
                         ))
@@ -61,7 +61,7 @@ class Index extends Component {
 
 const mapStateToProps = state => {
     return {
-        jobList: state.message.jobList,
+        workList: state.message.workList,
     }
 }
 
