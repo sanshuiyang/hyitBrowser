@@ -27,6 +27,7 @@ const index = (props) => {
         bsStyle={bsStyle}
         bsSize={bsSize}
         className={className}
+        style={{wordSpacing:"15",fontSize:"1em"}}
     >
         {children}
     </Button>

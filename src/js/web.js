@@ -184,6 +184,9 @@ class Web {
   FetchMsgList() {
     console.log("拉取未处理信息列表。");
   }
+  FetchWorkInfo(){
+    console.log("拉取当前选中作品的信息。");
+  }
 }
 
 //http://103.61.39.178:21011/api/v1/model/webrpc

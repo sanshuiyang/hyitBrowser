@@ -4,6 +4,7 @@ import CreateClass from "./CreateClass";
 import StudentInfo from "./StudentInfo";
 import JoinGroup from "./JoinGroup";
 import MsgLst from "./MsgLst";
+import WorkInfo from "./WorkInfo";
 import * as actionsCommon from "../browser/actions"
 
 import "./styles.css"
@@ -36,6 +37,8 @@ class Index extends Component {
                 return <JoinGroup onSure={this.onSure} onHide={this.onHide} />
             case "MsgLst":
                 return <MsgLst onSure={this.onSure} onHide={this.onHide} />
+            case "WorkInfo":
+                return <WorkInfo onSure={this.onSure} onHide={this.onHide} />
             case "Hide":
             default:
                 this.onHide();
@@ -47,8 +50,8 @@ class Index extends Component {
         const { modalType } = this.props;
         // console.log(modalType);
         return (
-            // modalType ? this.SwitchModal(modalType) : this.SwitchModal("StuentInfo")
-            modalType ? this.SwitchModal(modalType) : null
+            modalType ? this.SwitchModal(modalType) : this.SwitchModal("WorkInfo")
+            // modalType ? this.SwitchModal(modalType) : null
         )
 
     }

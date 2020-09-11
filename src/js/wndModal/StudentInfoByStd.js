@@ -3,28 +3,36 @@ import { Table } from "react-bootstrap";
 import { connect } from "react-redux";
 import Button from "../components/button";
 import Space from "../components/space";
-import * as alertActions from "../alert/actions"
+import * as alertActions from "../alert/actions";
+import ConfirmBox from "../components/confirmBox";
 
 class Index extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            showConfirmBox: false
+        }
+
         this.workInfo = this.workInfo.bind(this);
-        this.onlineShow = this.onlineShow.bind(this);
+        this.submitWork = this.submitWork.bind(this);
+        this.handleSure = this.handleSure.bind(this);
     }
 
     workInfo = (nameAndWorkName) => {
         if (this.checkLegality(nameAndWorkName)) {
-
+            
+        } else {
+            console.log("看别人的介绍")
         }
     }
 
-    onlineShow = (nameAndWorkName) => {
+    submitWork = (nameAndWorkName) => {
         console.log(nameAndWorkName);
         if (this.checkLegality(nameAndWorkName)) {
-
-        }else{
-            console.log("看别人的介绍")
+            this.setState({
+                showConfirmBox: true,
+            })
         }
     }
 
@@ -35,8 +43,14 @@ class Index extends Component {
             console.log(userInfo.userName == nameAndWorkName.name)
             return true;
         }
-        showAlert("info", "无法操作。");
+        showAlert("info", "非本人，无法操作。");
         return false;
+    }
+
+    handleSure = () => {
+        this.setState({
+            showConfirmBox: !this.state.showConfirmBox
+        })
     }
 
     render() {
@@ -59,9 +73,9 @@ class Index extends Component {
                                 <td>{value.workName}</td>
                                 <td>{value.score}</td>
                                 <td>
-                                    <Button onClick={() => this.workInfo({ name: value.name, workName: value.workName })}>提交作业</Button>
+                                    <Button onClick={() => this.submitWork({ name: value.name, workName: value.workName })}>提交作业</Button>
                                     <Space width={5} />
-                                    <Button onClick={() => this.onlineShow({ name: value.name, workName: value.workName })}>作业介绍</Button>
+                                    <Button onClick={() => this.workInfo({ name: value.name, workName: value.workName })}>作业介绍</Button>
                                 </td>
                             </tr>
                         ))
@@ -71,9 +85,21 @@ class Index extends Component {
         )
 
         return (
-            <div style={{ height: "650px", overflow: "auto" }}>
-                <TableDate />
-            </div>
+            <>
+                <div style={{ height: "650px", overflow: "auto" }}>
+                    <TableDate />
+                </div>
+                {
+                    this.state.showConfirmBox
+                        ?
+                        <ConfirmBox
+                            onSure={this.handleSure}
+                            onBack={() => { this.setState({ showConfirmBox: !this.state.showConfirmBox }) }}
+                            content="提交作业!"
+                            show={this.state.showConfirmBox}
+                        /> : null
+                }
+            </>
         )
     }
 }

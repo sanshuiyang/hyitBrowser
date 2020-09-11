@@ -82,6 +82,17 @@ const initalState = {
         },
     ],
     workList: generateWork(),
+    workInfo:{
+        owner:"三水1",
+        title:"三水的作业1",
+        introduce:"介绍文本，是这里吗？",
+        special:"项目有啥子特色，来唠嗑呀。",
+        imgs:[
+            "https://tse2-mm.cn.bing.net/th/id/OIP.5p1GY9PTMVkirIL90Mp6XgHaE7?w=295&h=195&c=7&o=5&pid=1.7",
+            "https://tse2-mm.cn.bing.net/th/id/OIP.5p1GY9PTMVkirIL90Mp6XgHaE7?w=295&h=195&c=7&o=5&pid=1.7",
+            "https://tse2-mm.cn.bing.net/th/id/OIP.5p1GY9PTMVkirIL90Mp6XgHaE7?w=295&h=195&c=7&o=5&pid=1.7",
+        ]
+    }
 }
 
 export default (
@@ -96,6 +107,10 @@ export default (
         case actionsMsg.SET_MSG_LIST:
             return Object.assign({}, state, {
                 msgList: action.msgList
+            })
+        case actionsMsg.SET_WORK_INfO:
+            return Object.assign({},state,{
+                workInfo:action.workInfo
             })
         default:
             return state

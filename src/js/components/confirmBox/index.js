@@ -13,14 +13,13 @@ class Index extends React.Component {
                     bsSize="small"
                     onHide={onBack}
                     aria-labelledby="contained-modal-title-sm"
-
                 >
-                    <Modal.Header>
+                    <Modal.Header style={{ background: "#426ab3" }}>
                         <Modal.Title style={{ textAlign: "center" }} >
                             请再次确认操作！
                    </Modal.Title>
                     </Modal.Header>
-                    <Modal.Footer>
+                    <Modal.Footer style={{ color: "white", background: "#426ab3" }}>
                         <br />
                         <span>是否确定：</span>
                         {content}
