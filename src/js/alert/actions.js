@@ -20,6 +20,7 @@ export const CLEAR = "alert/CLEAR"
 export let alertId = 0
 
 export const set = alert => {
+  console.log(alert);
   const id = alertId++
   return (dispatch, getState) => {
     if (alert.type !== "danger" || alert.autoClear) {

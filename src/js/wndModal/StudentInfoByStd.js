@@ -3,25 +3,44 @@ import { Table } from "react-bootstrap";
 import { connect } from "react-redux";
 import Button from "../components/button";
 import Space from "../components/space";
+import * as alertActions from "../alert/actions"
 
 class Index extends Component {
     constructor(props) {
         super(props);
 
-        this.jobInfo = this.jobInfo.bind(this);
+        this.workInfo = this.workInfo.bind(this);
         this.onlineShow = this.onlineShow.bind(this);
     }
 
-    jobInfo = (nameAndJobName) => {
-        console.log(nameAndJobName);
+    workInfo = (nameAndWorkName) => {
+        if (this.checkLegality(nameAndWorkName)) {
+
+        }
     }
 
-    onlineShow = (nameAndJobName) => {
-        console.log(nameAndJobName);
+    onlineShow = (nameAndWorkName) => {
+        console.log(nameAndWorkName);
+        if (this.checkLegality(nameAndWorkName)) {
+
+        }else{
+            console.log("看别人的介绍")
+        }
+    }
+
+    //检查是否只操作自己
+    checkLegality = (nameAndWorkName) => {
+        const { userInfo, showAlert } = this.props;
+        if (userInfo.userName == nameAndWorkName.name) {
+            console.log(userInfo.userName == nameAndWorkName.name)
+            return true;
+        }
+        showAlert("info", "无法操作。");
+        return false;
     }
 
     render() {
-        const { jobList } = this.props;
+        const { workList } = this.props;
         const TableDate = () => (
             <Table striped bordered condensed hover >
                 <thead className="thead">
@@ -34,15 +53,15 @@ class Index extends Component {
                 </thead>
                 <tbody className="tbody">
                     {
-                        jobList.map((value, index) => (
+                        workList.map((value, index) => (
                             <tr key={index}>
                                 <td>{value.name}</td>
-                                <td>{value.jobName}</td>
+                                <td>{value.workName}</td>
                                 <td>{value.score}</td>
                                 <td>
-                                    <Button onClick={() => this.jobInfo({ name: value.name, jobName: value.jobName })}>提交作业</Button>
+                                    <Button onClick={() => this.workInfo({ name: value.name, workName: value.workName })}>提交作业</Button>
                                     <Space width={5} />
-                                    <Button onClick={() => this.onlineShow({ name: value.name, jobName: value.jobName })}>作业介绍</Button>
+                                    <Button onClick={() => this.onlineShow({ name: value.name, workName: value.workName })}>作业介绍</Button>
                                 </td>
                             </tr>
                         ))
@@ -61,8 +80,15 @@ class Index extends Component {
 
 const mapStateToProps = state => {
     return {
-        jobList: state.message.jobList,
+        workList: state.message.workList,
+        userInfo: state.browser.userInfo,
     }
 }
 
-export default connect(mapStateToProps, null)(Index);
+const mapDispatchToProps = dispatch => {
+    return {
+        showAlert: (type, message) => dispatch(alertActions.set({ type: type, message: message })),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

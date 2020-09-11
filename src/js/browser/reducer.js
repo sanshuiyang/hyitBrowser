@@ -28,7 +28,19 @@ export default (
       userName: "三水1",
       role: "student",
       class: "二班三班",
-      department: "计通学院"
+      department: "xxx学院",
+      works: [
+        {
+          name: "三水的作业1",
+          status: "completed",
+          score: 97,
+        },
+        {
+          name: "这是未完成的作业",
+          status: "uncompleted",
+          score: 0
+        }
+      ]
     }
   },
   action

@@ -17,15 +17,15 @@ const modeRadioList = [
     }
 ]
 
-const subJobList = [
+const submitWorkList = [
     {
         value: "all",
-        name: "subJob",
+        name: "work",
         content: "小组集体提交"
     },
     {
         value: "one",
-        name: "subJob",
+        name: "work",
         content: "学员单独提交"
     }
 ]
@@ -84,7 +84,7 @@ class Index extends Component {
                         <div>
                             <span className="title">提交作业方式：</span>
                             <span className="cls-content">
-                                <Radio list={subJobList} />
+                                <Radio list={submitWorkList} />
                             </span>
                         </div>
                         <div>

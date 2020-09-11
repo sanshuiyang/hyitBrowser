@@ -5,15 +5,16 @@ import "./styles.css"
 
 class Index extends Component {
     render() {
-        const { children, title, showFooter, onHide, onSure, closeTxt, successTxt } = this.props;
+        const { show = true, children, title, showFooter, onHide, onSure, closeTxt, successTxt, style } = this.props;
         console.log(this.props);
         return (
             <Modal
-                show={true}
+                show={show}
                 bsSize="large"
                 onHide={onHide}
                 aria-labelledby="contained-modal-title-sm"
                 className="modal-container"
+                style={style}
             >
                 <Modal.Header>
                     {title ? <Modal.Title style={{ textAlign: "center" }} >{title}</Modal.Title> : null}
