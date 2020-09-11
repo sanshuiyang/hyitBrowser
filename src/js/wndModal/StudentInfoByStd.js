@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Button from "../components/button";
 import Space from "../components/space";
 import * as alertActions from "../alert/actions";
+import * as msgActions from "./actions";
 import ConfirmBox from "../components/confirmBox";
 
 class Index extends Component {
@@ -20,10 +21,13 @@ class Index extends Component {
     }
 
     workInfo = (nameAndWorkName) => {
+        const { showWorkInfo } = this.props;
+
         if (this.checkLegality(nameAndWorkName)) {
-            
+            showWorkInfo(nameAndWorkName, true);
         } else {
             console.log("看别人的介绍")
+            showWorkInfo(nameAndWorkName, false);
         }
     }
 
@@ -114,6 +118,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         showAlert: (type, message) => dispatch(alertActions.set({ type: type, message: message })),
+        showWorkInfo: (unAndTitle, disabled) => dispatch(msgActions.ShowWorkInfo(unAndTitle, disabled)),
     }
 }
 

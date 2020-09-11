@@ -6,14 +6,12 @@ import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux"
 
 class Index extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        const { disabled, workInfo, } = this.props;
-        
-        const { workName, workIntroduce, workSpecial } = workInfo;
+        const { workInfo, } = this.props;
+
+        const { title, introduce, special, imgs, disabled } = workInfo;
+
+        const disabledStr = disabled ? "disabled" : null;
 
         return (
             <Modal
@@ -25,19 +23,20 @@ class Index extends Component {
                             <span>作业名称:</span>
                             <Space width={10} />
                             <input
-                                disabled={disabled}
+                                disabled={disabledStr}
                                 className="wi-input-content"
-                            >
-                                {workName}
-                            </input>
+                                value={title}
+                                onChange={() => { }}
+                            />
                         </div>
                         <div className="wi-item">
                             <span>作业介绍:</span>
                             <Space width={10} />
                             <textarea
-                                value={workIntroduce}
+                                value={introduce}
                                 onChange={() => { }}
                                 rows="8"
+                                disabled={disabledStr}
                                 className="wi-input-content disable-resize"
                             ></textarea>
                         </div>
@@ -45,16 +44,17 @@ class Index extends Component {
                             <span>作业特色:</span>
                             <Space width={10} />
                             <textarea
-                                value={workSpecial}
+                                value={special}
                                 onChange={() => { }}
                                 rows="8"
+                                disabled={disabledStr}
                                 className="wi-input-content disable-resize"
                             ></textarea>
                         </div>
                     </Col>
                     <Col xs={6} md={2} className="show-grid">
                         {
-                            true ?
+                            disabled ?
                                 <div style={{ paddingLeft: "25%" }}>
                                     <Button bsStyle="primary">提交</Button>
                                     <br /><br />
@@ -69,7 +69,11 @@ class Index extends Component {
                     <Col xs={12} className="show-grid">
                         <span>作业截图:</span>
                         <Space width={10} />
-                        <img className="wi-img" src="" />
+                        {
+                            imgs.map((value, index) => (
+                                <img key={index} className="wi-img" src={value} />
+                            ))
+                        }
                     </Col>
                 </Row>
             </Modal>

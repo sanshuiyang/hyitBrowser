@@ -50,8 +50,8 @@ class Index extends Component {
         const { modalType } = this.props;
         // console.log(modalType);
         return (
-            modalType ? this.SwitchModal(modalType) : this.SwitchModal("WorkInfo")
-            // modalType ? this.SwitchModal(modalType) : null
+            // modalType ? this.SwitchModal(modalType) : this.SwitchModal("WorkInfo")
+            modalType ? this.SwitchModal(modalType) : null
         )
 
     }

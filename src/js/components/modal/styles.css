@@ -17,31 +17,3 @@
     color: #a1a3a6;
 }
 
-/* work info css */
-
-.show-grid {
-    /* border: 1px solid black; */
-    padding: 0;
-}
-
-.wi-item {
-    margin: 2px 0;
-}
-
-.wi-input-content {
-    display: inline-block;
-    width: 85%;
-}
-
-.disable-resize {
-    resize: none;
-}
-
-.wi-img {
-    width: 28%;
-    padding: 8px 10px;
-}
-
-.wi-img:first-of-type {
-    padding-left: 0;
-}

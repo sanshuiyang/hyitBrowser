@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import { connect } from "react-redux";
 import Button from "../components/button";
 import Space from "../components/space";
+import * as msgActions from "./actions";
 
 class Index extends Component {
     constructor(props) {
@@ -13,7 +14,9 @@ class Index extends Component {
     }
 
     workInfo = (nameAndWorkName) => {
+        const { ShowWorkInfo } = this.props;
         console.log(nameAndWorkName);
+        ShowWorkInfo(nameAndWorkName, false);
     }
 
     onlineShow = (nameAndWorkName) => {
@@ -65,4 +68,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(Index);
+const mapDispatchToProps = dispatch => {
+    return {
+        showWorkModal: (unAndTitle, disabled) => dispatch(msgActions.ShowWorkInfo(unAndTitle, disabled))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
