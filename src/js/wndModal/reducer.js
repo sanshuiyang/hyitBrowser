@@ -17,6 +17,18 @@ const random = () => {
 
 }
 
+const generateJob = () => {
+    let temp = [];
+    for (let i = 1; i <= 35; i++) {
+        temp.push({
+            name: "三水" + i,
+            jobName: "三水的作业" + i,
+            score: Math.floor(Math.random() * 50) + 50,
+        })
+    }
+    return temp;
+}
+
 const initalState = {
     msgList: [
         {
@@ -69,6 +81,7 @@ const initalState = {
             time: Moment().format("YYYY-MM-DD"),
         },
     ],
+    jobList: generateJob(),
 }
 
 export default (

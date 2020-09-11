@@ -33,14 +33,28 @@
     margin-left: 45%;
 }
 
-.cls-sub-btn{
+.cls-sub-btn {
     font-size: 1em;
 }
 
-.cls-content .input-num{
+.cls-content .input-num {
     width: 20%;
     text-shadow: none;
     border: none;
-    border-bottom:1px solid #777777;
+    border-bottom: 1px solid #777777;
+    text-align: center;
+}
+
+/* 学生名单表格 */
+
+.thead tr th {
+    text-align: center;
+}
+
+.thead tr th:first-child {
+    width: 18%;
+}
+
+.tbody tr>td:first-child {
     text-align: center;
 }

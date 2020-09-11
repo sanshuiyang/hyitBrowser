@@ -25,7 +25,7 @@ export default (
     accessKey: '',
     modalType: null,
     userInfo: {
-      userName: "三水杨",
+      userName: "三水1",
       role: "student",
       class: "二班三班",
       department: "计通学院"

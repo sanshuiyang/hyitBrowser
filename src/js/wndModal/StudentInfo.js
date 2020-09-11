@@ -19,8 +19,8 @@ class Index extends Component {
                 >
                     {
                         userInfo && userInfo.role == "teacher" ?
-                            <StdInfo /> :
-                            <TchInfo />
+                            <TchInfo /> : <StdInfo />
+
                     }
                 </Modal>
             </>
